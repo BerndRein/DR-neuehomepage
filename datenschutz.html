@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Datenschutz · Derya Rein</title>
+<meta name="robots" content="noindex, follow">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+  /* Gleiche Tokens wie die Startseite: dunkle Kopf- und Fußzeile, heller Lesebereich. */
+  :root{
+    --night:#0E1714;
+    --night-line:rgba(236,239,232,.14);
+    --sage-2:#DDE3D8;
+    --ink:#14201B;
+    --ink-soft:#44524B;
+    --paper:#F7F8F4;
+    --on-night:#ECEFE8;
+    --on-night-soft:#AEBBB3;
+    --sun:#E9A23B;
+    --sun-deep:#B8740F;
+    --font-display:'Archivo', 'Arial Narrow', system-ui, sans-serif;
+    --font-body:'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-voice:'Newsreader', Georgia, 'Times New Roman', serif;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-body); font-size:1.0625rem; line-height:1.65; -webkit-font-smoothing:antialiased;}
+  a{color:var(--sun-deep);}
+  :focus-visible{outline:3px solid var(--sun); outline-offset:3px; border-radius:4px;}
+  .inner{max-width:1200px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
+
+  .site-header{background:var(--night); color:var(--on-night); border-bottom:1px solid var(--night-line); padding-top:env(safe-area-inset-top, 0px);}
+  .nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; min-height:72px;}
+  .wordmark{font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 80; font-size:1.45rem; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; color:var(--on-night); display:flex; align-items:baseline; gap:.55rem; white-space:nowrap;}
+  .wordmark small{font-family:var(--font-voice); font-style:italic; font-weight:400; text-transform:none; letter-spacing:0; font-size:1rem; color:var(--on-night-soft);}
+  @media (max-width: 560px){ .wordmark small{display:none;} }
+  .back{font-family:var(--font-display); font-weight:700; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; color:var(--on-night-soft); min-height:44px; display:inline-flex; align-items:center;}
+  .back:hover{color:var(--on-night);}
+
+  main{padding-block:clamp(3rem, 8vw, 6rem);}
+  .legal{max-width:760px;}
+  .eyebrow{font-family:var(--font-display); font-weight:700; font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--sun-deep); margin:0 0 1rem;}
+  h1{font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 72; text-transform:uppercase; font-size:clamp(2.6rem, 8vw, 4.8rem); line-height:.92; margin:0 0 2.5rem;}
+  h2{font-family:var(--font-display); font-weight:800; font-variation-settings:'wdth' 85; font-size:1.2rem; margin:0 0 .5rem; color:var(--ink);}
+  section{padding:1.6rem 0; border-top:1px solid var(--sage-2);}
+  section:last-of-type{border-bottom:1px solid var(--sage-2);}
+  p{margin:0; color:var(--ink-soft); max-width:62ch;}
+  p + p{margin-top:.6rem;}
+  address{font-style:normal; color:var(--ink); margin-top:.6rem;}
+  .todo{background:#FCEBD0; color:var(--ink); padding:0 .25rem;}
+
+  .site-footer{background:var(--night); color:var(--on-night-soft); padding-block:2.4rem calc(2rem + env(safe-area-inset-bottom, 0px));}
+  .site-footer .inner{display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem; align-items:center;}
+  .site-footer ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem 1.6rem;}
+  .site-footer a{color:var(--on-night-soft); text-decoration:none; min-height:44px; display:inline-flex; align-items:center;}
+  .site-footer a:hover,.site-footer a[aria-current]{color:var(--on-night);}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner nav">
+    <a class="wordmark" href="index.html">Derya Rein <small>Stärke dich selbst.</small></a>
+    <a class="back" href="index.html">← Zur Startseite</a>
+  </div>
+</header>
+
+<main>
+  <div class="inner legal">
+    <p class="eyebrow">Rechtliches</p>
+    <h1>Datenschutz&shy;erklärung</h1>
+
+    <section>
+      <h2>1. Verantwortliche</h2>
+      <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+      <address>
+        Derya Rein<br>
+        Hauptstraße 12<br>
+        79341 Kenzingen<br>
+        E-Mail: <a href="mailto:info@derya-rein.de">info@derya-rein.de</a>
+      </address>
+    </section>
+
+    <section>
+      <h2>2. Das Wichtigste in Kürze</h2>
+      <p>Diese Website setzt keine Cookies, nutzt keine Analyse- oder Tracking-Werkzeuge und lädt keine Inhalte von Dritten nach. Auch die Schriften liegen auf dem eigenen Server. Personenbezogene Daten verarbeite ich nur, wenn du mir schreibst oder die Meditation anforderst, und nur so weit, wie es dafür nötig ist.</p>
+    </section>
+
+    <section>
+      <h2>3. Hosting und Server-Logfiles</h2>
+      <p>Diese Website wird bei <span class="todo">[NAME DES HOSTERS, ANSCHRIFT]</span> gehostet. Beim Aufruf der Seiten speichert der Server automatisch Informationen, die dein Browser übermittelt: IP-Adresse, Datum und Uhrzeit des Abrufs, aufgerufene Seite, zuvor besuchte Seite (Referrer), Browsertyp und Betriebssystem.</p>
+      <p>Diese Daten sind technisch nötig, um die Website sicher und stabil auszuliefern. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; mein berechtigtes Interesse liegt im sicheren Betrieb der Website. Die Logfiles werden nach <span class="todo">[ANZAHL]</span> Tagen gelöscht. Mit dem Hoster besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO.</p>
+    </section>
+
+    <section>
+      <h2>4. Kontaktformular und E-Mail</h2>
+      <p>Wenn du mir über das Kontaktformular oder per E-Mail schreibst, verarbeite ich deine Angaben (Name, E-Mail-Adresse, gewähltes Thema und deine Nachricht), um deine Anfrage zu beantworten und gegebenenfalls ein Erstgespräch zu vereinbaren.</p>
+      <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit deine Anfrage auf ein Coaching abzielt, und im Übrigen Art. 6 Abs. 1 lit. f DSGVO; mein berechtigtes Interesse liegt in der Beantwortung deiner Nachricht. Die Formulardaten werden über <span class="todo">[DIENST FÜR DEN FORMULARVERSAND, ANSCHRIFT]</span> an mein Postfach übermittelt.</p>
+      <p>Bitte schreib mir für die erste Kontaktaufnahme nur das, was du teilen möchtest. Teilst du mir von dir aus Gesundheitsdaten oder andere besonders schützenswerte Angaben mit, verarbeite ich sie auf Grundlage deiner ausdrücklichen Einwilligung nach Art. 9 Abs. 2 lit. a DSGVO und ausschließlich für deine Anfrage.</p>
+      <p>Ich lösche deine Anfrage, sobald sie erledigt ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Kommt es zu einem Coaching, gelten die Hinweise, die du dann gesondert erhältst.</p>
+    </section>
+
+    <section>
+      <h2>5. Kostenlose Meditation per E-Mail</h2>
+      <p>Wenn du die Meditation „Zur Ruhe kommen“ anforderst, verwende ich deine E-Mail-Adresse, um dir die Meditation zu schicken und dir gelegentlich Impulse zu Coaching und mentaler Stärke zu senden. Rechtsgrundlage ist deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO.</p>
+      <p>Ich nutze das Double-Opt-in-Verfahren: Du bekommst zuerst eine E-Mail, in der du die Anmeldung bestätigst. Dabei speichere ich den Zeitpunkt der Anmeldung und der Bestätigung als Nachweis. Den Versand übernimmt <span class="todo">[NEWSLETTER-ANBIETER, ANSCHRIFT]</span> als Auftragsverarbeiter.</p>
+      <p>Du kannst deine Einwilligung jederzeit widerrufen, über den Abmeldelink in jeder E-Mail oder mit einer kurzen Nachricht an mich. Danach wird deine Adresse gelöscht.</p>
+    </section>
+
+    <section>
+      <h2>6. Cookies, Schriften und externe Inhalte</h2>
+      <p>Diese Website setzt keine Cookies. Die verwendeten Schriften (Archivo und Newsreader) sind lokal eingebunden; beim Seitenaufruf besteht keine Verbindung zu Google oder anderen Anbietern.</p>
+      <p>Links zu anderen Websites, etwa zu meiner Facebook-Seite, sind einfache Verweise. Erst wenn du einen solchen Link anklickst, gelten die Datenschutzbestimmungen des jeweiligen Anbieters.</p>
+    </section>
+
+    <section>
+      <h2>7. Deine Rechte</h2>
+      <p>Du hast das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21). Eine erteilte Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3 DSGVO). Eine kurze E-Mail an <a href="mailto:info@derya-rein.de">info@derya-rein.de</a> genügt.</p>
+      <p>Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren. Für mich zuständig ist der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg, Lautenschlagerstraße 20, 70173 Stuttgart.</p>
+    </section>
+
+    <section>
+      <h2>8. Verschlüsselung</h2>
+      <p>Diese Website nutzt eine SSL/TLS-Verschlüsselung. Du erkennst sie am Schloss-Symbol und an „https://“ in der Adresszeile deines Browsers.</p>
+    </section>
+
+    <p style="margin-top:2rem; font-size:.92rem">Stand: Oktober 2026</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="inner">
+    <span>© 2026 Derya Rein · Stärke dich selbst.</span>
+    <nav aria-label="Fußzeile">
+      <ul>
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html" aria-current="page">Datenschutz</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
