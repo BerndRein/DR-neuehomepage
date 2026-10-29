@@ -343,6 +343,14 @@
   .contact-card .row{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem;}
   @media (max-width: 520px){ .contact-card .row{grid-template-columns:1fr;} }
   .fine{font-size:.85rem; color:var(--ink-soft); margin:0;}
+  .finale .contact-card p{font-size:.92rem; max-width:none;}
+  .finale .contact-card .form-status:empty{display:none;}
+  .mail-title{font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 80; text-transform:uppercase; font-size:1.6rem; line-height:1; color:var(--ink);}
+  .mail-fallback{border-top:1px solid var(--sage-2); padding-top:1rem; display:flex; flex-direction:column; gap:.5rem;}
+  .mail-copy{display:flex; flex-wrap:wrap; align-items:center; gap:.6rem 1rem;}
+  .mail-address{font-weight:700; font-size:1.1rem; color:var(--ink); user-select:all; overflow-wrap:anywhere;}
+  .copy-btn{font:inherit; font-weight:700; font-size:.9rem; color:var(--ink); background:transparent; border:1px solid var(--ink-soft); border-radius:2px; padding:0 1rem; min-height:44px; cursor:pointer;}
+  .copy-btn:hover{background:var(--ink); color:var(--paper);}
 
   /* Footer */
   .site-footer{padding-block:3rem calc(2.2rem + env(safe-area-inset-bottom, 0px)); border-top:1px solid var(--night-line);}
@@ -694,21 +702,9 @@
           <a href="mailto:info@derya-rein.de" style="color:inherit">info@derya-rein.de</a>
         </div>
       </div>
-      <form class="contact-card" id="contact-form" novalidate>
-        <div class="row">
-          <div class="field">
-            <label for="c-first">Vorname</label>
-            <input id="c-first" name="vorname" type="text" autocomplete="given-name">
-          </div>
-          <div class="field">
-            <label for="c-last">Nachname</label>
-            <input id="c-last" name="nachname" type="text" autocomplete="family-name">
-          </div>
-        </div>
-        <div class="field">
-          <label for="c-email">E-Mail-Adresse *</label>
-          <input id="c-email" name="email" type="email" autocomplete="email" required>
-        </div>
+      <div class="contact-card" id="contact-card">
+        <h3 class="mail-title">Schreib mir eine E-Mail</h3>
+        <p class="fine">Wähle dein Thema. Dein E-Mail-Programm öffnet sich dann mit einer vorbereiteten Nachricht, die du nur noch ergänzen musst.</p>
         <div class="field">
           <label for="c-topic">Worum geht es?</label>
           <select id="c-topic" name="thema">
@@ -722,14 +718,17 @@
             <option>Workshop für Organisation</option>
           </select>
         </div>
-        <div class="field">
-          <label for="c-msg">Was beschäftigt dich gerade?</label>
-          <textarea id="c-msg" name="nachricht"></textarea>
+        <a class="btn btn--ink" id="mail-cta" href="mailto:info@derya-rein.de?subject=Anfrage%3A%20Kostenloses%20Erstgespr%C3%A4ch">E-Mail schreiben</a>
+        <div class="mail-fallback">
+          <p class="fine">Es öffnet sich nichts? Dann schreib einfach direkt an:</p>
+          <div class="mail-copy">
+            <span class="mail-address" id="mail-address">info@derya-rein.de</span>
+            <button class="copy-btn" type="button" id="copy-mail">Adresse kopieren</button>
+          </div>
+          <p class="form-status" id="copy-status" role="status" aria-live="polite"></p>
         </div>
-        <button class="btn btn--ink" type="submit">Erstgespräch anfragen</button>
-        <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
-        <p class="fine">Deine Angaben behandle ich vertraulich. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-      </form>
+        <p class="fine">Deine Nachricht behandle ich vertraulich. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      </div>
     </div>
   </section>
 
@@ -782,10 +781,32 @@
     });
   });
 
-  // Thema aus Karten ins Formular übernehmen
+  // Thema aus Karten in die E-Mail übernehmen
   var topic = document.getElementById('c-topic');
+  var mailCta = document.getElementById('mail-cta');
+  var MAIL = 'info@derya-rein.de';
+  function updateMail(){
+    var subject = 'Anfrage: ' + topic.value;
+    var body = 'Hallo Derya,\n\nich interessiere mich für: ' + topic.value + '\n\nWas mich gerade beschäftigt:\n\n\nSo bin ich am besten erreichbar:\n\nViele Grüße\n';
+    mailCta.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  }
+  topic.addEventListener('change', updateMail);
   document.querySelectorAll('[data-topic]').forEach(function(a){
-    a.addEventListener('click', function(){ topic.value = a.dataset.topic; });
+    a.addEventListener('click', function(){ topic.value = a.dataset.topic; updateMail(); });
+  });
+  updateMail();
+
+  // E-Mail-Adresse kopieren
+  var copyStatus = document.getElementById('copy-status');
+  document.getElementById('copy-mail').addEventListener('click', function(){
+    function selectText(){
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('mail-address'));
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      copyStatus.textContent = 'Adresse markiert. Mit Strg+C oder Cmd+C kopieren.';
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(MAIL).then(function(){ copyStatus.textContent = 'Kopiert: ' + MAIL; }, selectText);
+    } else { selectText(); }
   });
 
   // Wellenform für die Meditation
@@ -815,7 +836,6 @@
     });
   }
   wire('gift-form', 'gift-status', 'gift-email');
-  wire('contact-form', 'contact-status', 'c-email');
 })();
 </script>
 </body>
