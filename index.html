@@ -316,6 +316,9 @@
   .field textarea{min-height:130px; resize:vertical;}
   .on-night .field label{color:var(--on-night);}
   .form-status{margin:0; font-size:.92rem; min-height:1.4em;}
+  .hp{position:absolute; left:-9999px; width:1px; height:1px; opacity:0;}
+  .consent{width:100%; margin:0; font-size:.85rem; line-height:1.5; color:var(--on-night-soft);}
+  .consent a{color:var(--on-night);}
   .form-status.is-shown{padding:.7rem .9rem; border:1px dashed currentColor;}
 
   /* FAQ */
@@ -642,12 +645,16 @@
           </div>
         </div>
         <div class="wave" id="wave" aria-hidden="true"></div>
-        <form class="inline-form" id="gift-form" novalidate>
+        <!-- Brevo: Formular-Adresse aus Brevo (Formulare > Anmeldeformular > Teilen > HTML-Code, Attribut action) hier eintragen -->
+        <form class="inline-form" id="gift-form" method="POST" action="" data-brevo-action="" novalidate>
           <div class="field">
             <label for="gift-email">E-Mail-Adresse</label>
-            <input id="gift-email" name="email" type="email" autocomplete="email" required placeholder="du@beispiel.de">
+            <input id="gift-email" name="EMAIL" type="email" autocomplete="email" required placeholder="du@beispiel.de">
           </div>
+          <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+          <input type="hidden" name="locale" value="de">
           <button class="btn btn--sun" type="submit">Meditation zusenden</button>
+          <p class="consent">Mit Klick auf „Meditation zusenden“ willige ich ein, dass Derya Rein mir die Meditation und gelegentlich Impulse zu Coaching und mentaler Stärke per E-Mail schickt. Abmeldung jederzeit. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
           <p class="form-status" id="gift-status" role="status" aria-live="polite" style="width:100%"></p>
         </form>
       </div>
@@ -820,23 +827,40 @@
     wave.appendChild(s);
   }
 
-  // Formulare: noch ohne Anbindung an ein Postfach
-  function wire(formId, statusId, emailId){
-    var form = document.getElementById(formId);
-    var status = document.getElementById(statusId);
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var email = document.getElementById(emailId);
-      status.classList.add('is-shown');
-      if (!email.value || !email.checkValidity()) {
-        status.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein, z. B. name@beispiel.de.';
-        email.focus();
-        return;
-      }
-      status.textContent = 'Vorschau: Dieses Formular ist noch nicht mit einem Postfach verbunden. Es wurde nichts gesendet.';
-    });
-  }
-  wire('gift-form', 'gift-status', 'gift-email');
+  // Meditation: Anmeldung direkt an Brevo (Double-Opt-in läuft in Brevo)
+  var giftForm = document.getElementById('gift-form');
+  var giftStatus = document.getElementById('gift-status');
+  var giftEmail = document.getElementById('gift-email');
+  var giftBtn = giftForm.querySelector('button[type="submit"]');
+  function say(text){ giftStatus.classList.add('is-shown'); giftStatus.textContent = text; }
+  giftForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!giftEmail.value || !giftEmail.checkValidity()) {
+      say('Bitte gib eine gültige E-Mail-Adresse ein, z. B. name@beispiel.de.');
+      giftEmail.focus();
+      return;
+    }
+    var action = giftForm.dataset.brevoAction;
+    if (!action) { say('Vorschau: Die Anmeldung ist noch nicht mit Brevo verbunden. Es wurde nichts gesendet.'); return; }
+    giftBtn.disabled = true;
+    say('Einen Moment …');
+    fetch(action + (action.indexOf('?') < 0 ? '?' : '&') + 'isAjax=1', { method: 'POST', body: new FormData(giftForm) })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if (data && data.success) {
+          giftForm.reset();
+          say('Fast geschafft: Bitte bestätige deine Anmeldung in der E-Mail, die du gleich bekommst. Danach ist die Meditation unterwegs.');
+        } else {
+          say('Das hat leider nicht geklappt. Bitte prüfe deine E-Mail-Adresse und versuch es noch einmal.');
+        }
+      })
+      .catch(function(){
+        // Rückfallebene: klassisch an Brevo senden
+        giftForm.action = action;
+        HTMLFormElement.prototype.submit.call(giftForm);
+      })
+      .then(function(){ giftBtn.disabled = false; });
+  });
 })();
 </script>
 </body>
