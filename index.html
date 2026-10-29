@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Derya Rein Coaching</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Derya Rein – Neurocoach, Mentaltrainerin und Systemische Beraterin. Raus aus alten Mustern. Rein in deine Kraft. Kostenloses Erstgespräch in Kenzingen oder online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  /* Layout: Bühne wie bei einem großen Event – dunkle, kraftvolle Bänder im Wechsel mit hellen Ruhezonen; Jahresringe als Motiv für „tief verwurzelt“. */
+  :root{
+    --night:#0E1714;        /* Grund: Waldnacht */
+    --night-2:#16231E;
+    --night-line:rgba(236,239,232,.14);
+    --sage:#ECEFE8;         /* helle Ruhezonen */
+    --sage-2:#DDE3D8;
+    --ink:#14201B;
+    --ink-soft:#44524B;
+    --paper:#F7F8F4;
+    --on-night:#ECEFE8;
+    --on-night-soft:#AEBBB3;
+    --sun:#E9A23B;          /* Akzent: Sonnenaufgang, Kraft */
+    --sun-deep:#B8740F;
+    --font-display:'Archivo', 'Arial Narrow', system-ui, sans-serif;
+    --font-body:'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-voice:'Newsreader', Georgia, 'Times New Roman', serif;
+    --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+    --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:84px;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{transition:none !important; animation:none !important;} }
+  body{
+    margin:0;
+    background:var(--night);
+    color:var(--on-night);
+    font-family:var(--font-body);
+    font-variation-settings:'wdth' 100;
+    font-size:1.0625rem;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:60; background:var(--night);}
+  img{max-width:100%;}
+  a{color:inherit;}
+  :focus-visible{outline:3px solid var(--sun); outline-offset:3px; border-radius:4px;}
+
+  .inner{
+    max-width:1200px;
+    margin:0 auto;
+    padding-left:var(--gutter-l);
+    padding-right:var(--gutter-r);
+  }
+  .band{padding-block:clamp(4rem, 9vw, 7.5rem);}
+  .band--light{background:var(--sage); color:var(--ink);}
+  .band--paper{background:var(--paper); color:var(--ink);}
+  .band--night2{background:var(--night-2);}
+
+  h1,h2,h3{font-family:var(--font-display); text-wrap:balance; margin:0;}
+  .display{
+    font-weight:850;
+    font-variation-settings:'wdth' 72;
+    text-transform:uppercase;
+    letter-spacing:-.005em;
+    line-height:.92;
+  }
+  .h-xl{font-size:clamp(3rem, 9.5vw, 7.4rem);}
+  .h-l{font-size:clamp(2.3rem, 6vw, 4.6rem);}
+  .h-m{font-size:clamp(1.8rem, 4vw, 2.9rem);}
+  .eyebrow{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:.8rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--sun);
+    margin:0 0 1.1rem;
+  }
+  .band--light .eyebrow,.band--paper .eyebrow{color:var(--sun-deep);}
+  .voice{font-family:var(--font-voice); font-style:italic; font-weight:400; text-transform:none; letter-spacing:0;}
+  .lead{font-size:clamp(1.1rem, 1.6vw, 1.3rem); max-width:60ch; color:var(--on-night-soft); margin:0;}
+  .band--light .lead,.band--paper .lead{color:var(--ink-soft);}
+  .section-head{display:flex; flex-direction:column; gap:1.1rem; margin-bottom:clamp(2.2rem, 5vw, 3.5rem); max-width:820px;}
+
+  /* Buttons */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+    min-height:54px; padding:0 1.7rem;
+    font-family:var(--font-display); font-weight:800; font-size:.95rem;
+    letter-spacing:.1em; text-transform:uppercase; text-decoration:none;
+    border-radius:2px; border:2px solid transparent; cursor:pointer;
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn--sun{background:var(--sun); color:var(--night);}
+  .btn--sun:hover{background:#F3B658;}
+  .btn--ghost{border-color:currentColor; color:var(--on-night); background:transparent;}
+  .btn--ghost:hover{background:var(--on-night); color:var(--night);}
+  .btn--ink{background:var(--ink); color:var(--sage);}
+  .btn--ink:hover{background:#24342D;}
+  .btn-row{display:flex; flex-wrap:wrap; gap:.9rem; align-items:center;}
+
+  /* Header */
+  .site-header{
+    position:sticky; top:env(safe-area-inset-top, 0px); z-index:50;
+    background:rgba(14,23,20,.92);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--night-line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; min-height:72px;}
+  .wordmark{
+    font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 80;
+    font-size:1.45rem; letter-spacing:.06em; text-transform:uppercase; text-decoration:none;
+    display:flex; align-items:baseline; gap:.55rem; white-space:nowrap;
+  }
+  .wordmark small{font-family:var(--font-voice); font-style:italic; font-weight:400; text-transform:none; letter-spacing:0; font-size:1rem; color:var(--on-night-soft);}
+  .nav-links{display:flex; align-items:center; gap:1.6rem; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    font-family:var(--font-display); font-weight:700; font-size:.85rem; letter-spacing:.12em;
+    text-transform:uppercase; text-decoration:none; color:var(--on-night-soft);
+    min-height:44px; display:inline-flex; align-items:center;
+  }
+  .nav-links a:hover{color:var(--on-night);}
+  .nav-cta{min-height:44px; padding:0 1.1rem; font-size:.8rem;}
+  .nav-toggle{
+    display:none; background:none; border:1px solid var(--night-line); color:var(--on-night);
+    width:48px; height:48px; border-radius:2px; cursor:pointer; align-items:center; justify-content:center;
+  }
+  @media (max-width: 920px){
+    .nav-toggle{display:inline-flex;}
+    .nav-links{
+      position:absolute; left:0; right:0; top:100%;
+      flex-direction:column; align-items:stretch; gap:0;
+      background:var(--night); border-bottom:1px solid var(--night-line);
+      padding:.5rem var(--gutter-r) 1.2rem var(--gutter-l);
+      display:none;
+    }
+    .nav-links.is-open{display:flex;}
+    .nav-links a{padding:.4rem 0; font-size:1rem;}
+    .nav-links li:last-child{margin-top:.6rem;}
+    .wordmark small{display:none;}
+  }
+
+  /* Hero */
+  .hero{position:relative; overflow:hidden; padding-block:clamp(3.5rem, 8vw, 6.5rem) clamp(3.5rem, 7vw, 5.5rem);}
+  .hero-grid{display:grid; grid-template-columns:minmax(0, 1.25fr) minmax(0, .9fr); gap:clamp(2rem, 5vw, 4.5rem); align-items:center;}
+  .hero-copy{display:flex; flex-direction:column; gap:1.6rem; min-width:0;}
+  .hero h1 .line{display:block;}
+  .hero h1 .sun{color:var(--sun);}
+  .hero-note{font-size:.95rem; color:var(--on-night-soft); margin:0; display:flex; flex-wrap:wrap; gap:.4rem 1.2rem;}
+  .hero-note span::before{content:"✓"; color:var(--sun); margin-right:.45rem; font-weight:700;}
+  @media (max-width: 860px){ .hero-grid{grid-template-columns:1fr;} }
+
+  /* Jahresringe: Platzhalter fürs Porträt */
+  .rings{
+    position:relative; width:100%; max-width:100%; aspect-ratio:4 / 5;
+    background:
+      repeating-radial-gradient(ellipse at 42% 58%, transparent 0 13px, rgba(233,162,59,.16) 13px 14px),
+      var(--night-2);
+    border:1px solid var(--night-line);
+    display:flex; align-items:flex-end;
+  }
+  .rings--square{aspect-ratio:1 / 1;}
+  .photo-label{
+    margin:1rem; padding:.55rem .8rem; background:var(--night); border:1px dashed var(--on-night-soft);
+    color:var(--on-night-soft); font-size:.85rem; line-height:1.4;
+  }
+  .hero-quote{
+    position:absolute; right:-1px; top:12%;
+    max-width:78%; background:var(--sun); color:var(--night);
+    padding:1rem 1.25rem; font-family:var(--font-voice); font-style:italic; font-size:1.25rem; line-height:1.3;
+    margin:0;
+  }
+
+  /* Qualifikationsleiste (wie „Featured in“) */
+  .creds{border-block:1px solid var(--night-line); background:var(--night);}
+  .creds .inner{display:flex; flex-wrap:wrap; align-items:center; gap:1rem 2.6rem; padding-block:1.6rem;}
+  .creds-label{font-size:.75rem; letter-spacing:.18em; text-transform:uppercase; color:var(--on-night-soft); font-weight:700;}
+  .creds-list{display:flex; flex-wrap:wrap; gap:.8rem 2.4rem; list-style:none; margin:0; padding:0;}
+  .creds-list li{font-family:var(--font-display); font-weight:800; font-variation-settings:'wdth' 75; text-transform:uppercase; letter-spacing:.06em; font-size:1.05rem; color:var(--on-night);}
+
+  /* Wege-Karussell (wie die Event-Karten) */
+  .rail-head{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:1.5rem; margin-bottom:2.4rem;}
+  .rail-controls{display:flex; gap:.6rem;}
+  .rail-btn{
+    width:52px; height:52px; border-radius:50%; border:1px solid var(--night-line);
+    background:transparent; color:var(--on-night); cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
+  }
+  .rail-btn:hover{background:var(--on-night); color:var(--night);}
+  .rail{
+    display:grid; grid-auto-flow:column; grid-auto-columns:minmax(280px, 360px);
+    gap:1.2rem; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:1.2rem;
+    scrollbar-width:thin; scrollbar-color:var(--sun) transparent;
+  }
+  .path{
+    scroll-snap-align:start; background:var(--night-2); border:1px solid var(--night-line);
+    padding:1.8rem 1.6rem; display:flex; flex-direction:column; gap:.9rem; min-height:380px;
+  }
+  .path--first{background:var(--sun); color:var(--night); border-color:var(--sun);}
+  .path-tag{font-size:.75rem; letter-spacing:.16em; text-transform:uppercase; font-weight:800; color:var(--sun);}
+  .path--first .path-tag{color:var(--night);}
+  .path h3{font-weight:850; font-variation-settings:'wdth' 75; text-transform:uppercase; font-size:1.9rem; line-height:1;}
+  .path p{margin:0; color:var(--on-night-soft);}
+  .path--first p{color:#3A2A0E;}
+  .path ul{margin:0; padding-left:1.1rem; color:var(--on-night-soft);}
+  .path-meta{font-weight:700; font-size:.95rem; color:var(--on-night);}
+  .path--first .path-meta{color:var(--night);}
+  .path-link{
+    margin-top:auto; font-family:var(--font-display); font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+    font-size:.85rem; text-decoration:none; min-height:44px; display:inline-flex; align-items:center; gap:.5rem; color:var(--sun);
+  }
+  .path--first .path-link{color:var(--night);}
+  .path-link:hover{text-decoration:underline; text-underline-offset:4px;}
+
+  /* Statement-Band */
+  .statement{text-align:left;}
+  .statement .inner{display:grid; grid-template-columns:minmax(0, 1.4fr) minmax(0, 1fr); gap:2rem 4rem; align-items:end;}
+  @media (max-width: 820px){ .statement .inner{grid-template-columns:1fr;} }
+
+  /* Drei Säulen */
+  .pillars{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1px; background:var(--sage-2); border:1px solid var(--sage-2);}
+  @media (max-width: 900px){ .pillars{grid-template-columns:1fr;} }
+  .pillar{background:var(--sage); padding:2.2rem 1.9rem; display:flex; flex-direction:column; gap:1rem; min-width:0;}
+  .pillar-name{font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 72; text-transform:uppercase; font-size:2.4rem; line-height:.95; color:var(--ink);}
+  .pillar-quote{font-family:var(--font-voice); font-style:italic; font-size:1.4rem; line-height:1.35; margin:0; color:var(--ink);}
+  .pillar p{margin:0; color:var(--ink-soft);}
+  .pillar strong{color:var(--ink);}
+  .pillar .btn{margin-top:auto; align-self:flex-start;}
+
+  /* Stimmen */
+  .voices-feature{display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr); gap:clamp(2rem, 5vw, 4rem); align-items:start;}
+  @media (max-width: 900px){ .voices-feature{grid-template-columns:1fr;} }
+  .voice-big blockquote{margin:0 0 1.4rem; font-family:var(--font-voice); font-style:italic; font-size:clamp(1.5rem, 2.8vw, 2.25rem); line-height:1.3; color:var(--on-night);}
+  .voice-big blockquote::before{content:"„"; color:var(--sun);}
+  .voice-big blockquote::after{content:"“"; color:var(--sun);}
+  .who{font-family:var(--font-display); font-weight:800; letter-spacing:.12em; text-transform:uppercase; font-size:.8rem; color:var(--on-night-soft);}
+  .who b{color:var(--sun); font-weight:800;}
+  .voice-list{display:flex; flex-direction:column; gap:0; margin:0; padding:0; list-style:none;}
+  .voice-list li{padding:1.4rem 0; border-top:1px solid var(--night-line);}
+  .voice-list li:last-child{border-bottom:1px solid var(--night-line);}
+  .voice-list blockquote{margin:0 0 .6rem; font-size:1.1rem; line-height:1.5;}
+
+  /* Über mich */
+  .about-grid{display:grid; grid-template-columns:minmax(0, .85fr) minmax(0, 1.15fr); gap:clamp(2rem, 5vw, 4.5rem); align-items:start;}
+  @media (max-width: 900px){ .about-grid{grid-template-columns:1fr;} }
+  .band--paper .rings{background:repeating-radial-gradient(ellipse at 50% 60%, transparent 0 13px, rgba(184,116,15,.18) 13px 14px), var(--sage);border-color:var(--sage-2);}
+  .band--paper .photo-label{background:var(--paper); color:var(--ink-soft); border-color:var(--ink-soft);}
+  .about-copy{display:flex; flex-direction:column; gap:1.2rem; min-width:0;}
+  .about-copy p{margin:0; color:var(--ink-soft); max-width:62ch;}
+  .about-copy .h-l{color:var(--ink);}
+  .timeline{list-style:none; margin:.6rem 0 0; padding:0; border-top:1px solid var(--sage-2);}
+  .timeline li{display:grid; grid-template-columns:4.2rem minmax(0, 1fr); gap:1rem; padding:.85rem 0; border-bottom:1px solid var(--sage-2); color:var(--ink);}
+  .timeline .yr{font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 75; color:var(--sun-deep); font-variant-numeric:tabular-nums;}
+  .timeline .org{display:block; color:var(--ink-soft); font-size:.92rem;}
+
+  /* Fakten (wie die Ergebnis-Zahlen) */
+  .facts{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:2rem;}
+  @media (max-width: 900px){ .facts{grid-template-columns:repeat(2, minmax(0, 1fr));} }
+  .fact{border-top:2px solid var(--sun); padding-top:1.2rem; display:flex; flex-direction:column; gap:.4rem; min-width:0;}
+  .fact-num{font-family:var(--font-display); font-weight:900; font-variation-settings:'wdth' 68; font-size:clamp(3rem, 7vw, 5.2rem); line-height:.9; color:var(--on-night); font-variant-numeric:tabular-nums;}
+  .fact-num small{font-size:.45em; color:var(--sun);}
+  .fact p{margin:0; color:var(--on-night-soft); font-size:.98rem;}
+
+  /* Ablauf */
+  .steps{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:1.4rem; counter-reset:step;}
+  @media (max-width: 1000px){ .steps{grid-template-columns:repeat(2, minmax(0, 1fr));} }
+  @media (max-width: 560px){ .steps{grid-template-columns:1fr;} }
+  .steps li{counter-increment:step; display:flex; flex-direction:column; gap:.6rem; min-width:0;}
+  .steps li::before{
+    content:counter(step, decimal-leading-zero);
+    font-family:var(--font-display); font-weight:900; font-variation-settings:'wdth' 68;
+    font-size:3rem; line-height:1; color:var(--sun-deep);
+  }
+  .steps h3{font-weight:850; font-variation-settings:'wdth' 80; text-transform:uppercase; font-size:1.25rem; color:var(--ink);}
+  .steps p{margin:0; color:var(--ink-soft); font-size:.98rem;}
+  .methods{margin-top:3rem; padding-top:1.6rem; border-top:1px solid var(--sage-2); display:flex; flex-wrap:wrap; gap:.6rem;}
+  .methods-label{width:100%; font-weight:800; font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:.4rem;}
+  .chip{border:1px solid var(--ink-soft); color:var(--ink); padding:.4rem .85rem; font-size:.92rem; border-radius:999px;}
+
+  /* Meditation (wie Podcast/Shop) */
+  .gift{display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:clamp(2rem, 5vw, 4rem); align-items:center;}
+  @media (max-width: 860px){ .gift{grid-template-columns:1fr;} }
+  .player{
+    background:var(--night); border:1px solid var(--night-line); padding:1.8rem; display:flex; flex-direction:column; gap:1.4rem;
+  }
+  .player-top{display:flex; align-items:center; gap:1.1rem;}
+  .play{width:64px; height:64px; border-radius:50%; background:var(--sun); color:var(--night); display:inline-flex; align-items:center; justify-content:center; flex:none;}
+  .player-title{font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 78; text-transform:uppercase; font-size:1.4rem; line-height:1.05;}
+  .player-sub{color:var(--on-night-soft); font-size:.92rem;}
+  .wave{display:flex; align-items:center; gap:3px; height:48px;}
+  .wave span{flex:1; background:var(--on-night-soft); opacity:.45; border-radius:2px;}
+  .wave span.on{background:var(--sun); opacity:1;}
+  .inline-form{display:flex; flex-wrap:wrap; gap:.7rem; align-items:flex-end;}
+  .inline-form .field{flex:1 1 240px; min-width:0;}
+
+  /* Formulare */
+  .field{display:flex; flex-direction:column; gap:.4rem;}
+  .field label{font-weight:700; font-size:.88rem; letter-spacing:.04em;}
+  .field input,.field select,.field textarea{
+    font:inherit; color:var(--ink); background:#FFFFFF; border:1px solid #9AA79F; border-radius:2px;
+    padding:.8rem .9rem; min-height:52px; width:100%;
+  }
+  .field textarea{min-height:130px; resize:vertical;}
+  .on-night .field label{color:var(--on-night);}
+  .form-status{margin:0; font-size:.92rem; min-height:1.4em;}
+  .form-status.is-shown{padding:.7rem .9rem; border:1px dashed currentColor;}
+
+  /* FAQ */
+  .faq{max-width:880px;}
+  .faq details{border-top:1px solid var(--sage-2);}
+  .faq details:last-child{border-bottom:1px solid var(--sage-2);}
+  .faq summary{
+    list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:1.2rem;
+    padding:1.4rem 0; min-height:44px;
+    font-family:var(--font-display); font-weight:800; font-variation-settings:'wdth' 85; font-size:1.25rem; color:var(--ink);
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq .plus{flex:none; width:36px; height:36px; border:1px solid var(--ink-soft); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; transition:transform .2s ease; color:var(--ink);}
+  .faq details[open] .plus{transform:rotate(45deg);}
+  .faq details p{margin:0 0 1.5rem; color:var(--ink-soft); max-width:68ch;}
+
+  /* Abschluss + Kontakt */
+  .finale{background:var(--sun); color:var(--night);}
+  .finale-grid{display:grid; grid-template-columns:minmax(0, 1.1fr) minmax(0, 1fr); gap:clamp(2rem, 5vw, 4rem); align-items:start;}
+  @media (max-width: 900px){ .finale-grid{grid-template-columns:1fr;} }
+  .finale .eyebrow{color:var(--night);}
+  .finale p{margin:0; max-width:52ch; font-size:1.15rem;}
+  .contact-lines{display:flex; flex-direction:column; gap:.3rem; font-weight:700; margin-top:1.4rem;}
+  .contact-card{background:var(--paper); color:var(--ink); padding:clamp(1.4rem, 3vw, 2.2rem); display:flex; flex-direction:column; gap:1rem;}
+  .contact-card .row{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem;}
+  @media (max-width: 520px){ .contact-card .row{grid-template-columns:1fr;} }
+  .fine{font-size:.85rem; color:var(--ink-soft); margin:0;}
+
+  /* Footer */
+  .site-footer{padding-block:3rem calc(2.2rem + env(safe-area-inset-bottom, 0px)); border-top:1px solid var(--night-line);}
+  .footer-grid{display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;}
+  .footer-grid nav ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem 1.6rem;}
+  .footer-grid a{color:var(--on-night-soft); text-decoration:none; min-height:44px; display:inline-flex; align-items:center;}
+  .footer-grid a:hover{color:var(--on-night);}
+  .copy{color:var(--on-night-soft); font-size:.9rem; margin:1.6rem 0 0;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner nav">
+    <a class="wordmark" href="#start">Derya Rein <small>Stärke dich selbst.</small></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menü öffnen">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#themen">Themen</a></li>
+      <li><a href="#wege">Angebote</a></li>
+      <li><a href="#ueber-mich">Über mich</a></li>
+      <li><a href="#ablauf">Ablauf</a></li>
+      <li><a href="#fragen">Fragen</a></li>
+      <li><a class="btn btn--sun nav-cta" href="#kontakt">Erstgespräch</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="start">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="inner hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Neurocoaching · Mentaltraining · Systemische Beratung</p>
+        <h1 class="display h-xl">
+          <span class="line">Raus aus</span>
+          <span class="line">alten Mustern.</span>
+          <span class="line sun">Rein in deine Kraft.</span>
+        </h1>
+        <p class="lead">Du spürst, dass sich etwas verändern muss, weißt aber noch nicht genau was oder wie? Ich begleite dich behutsam und in deinem Tempo dabei, Blockaden zu lösen und deinen nächsten Schritt mit Klarheit zu gehen. Denn Veränderung darf auch leicht sein.</p>
+        <div class="btn-row">
+          <a class="btn btn--sun" href="#kontakt">Kostenloses Erstgespräch</a>
+          <a class="btn btn--ghost" href="#themen">Finde dein Thema</a>
+        </div>
+        <p class="hero-note"><span>Unverbindlich</span><span>Persönlich</span><span>In Kenzingen oder online</span></p>
+      </div>
+      <div style="position:relative; min-width:0">
+        <div class="rings" role="img" aria-label="Platzhalter für ein Porträtfoto von Derya Rein">
+          <span class="photo-label">[Porträtfoto Derya Rein, Hochformat 4:5]</span>
+        </div>
+        <p class="hero-quote">„Ich nehme dich so an, wie du bist.“</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qualifikationen -->
+  <section class="creds" aria-label="Ausbildungen und Zertifikate">
+    <div class="inner">
+      <span class="creds-label">Ausgebildet als</span>
+      <ul class="creds-list">
+        <li>Business &amp; Life Coach (IHK)</li>
+        <li>Neurocoach</li>
+        <li>Systemische Beraterin</li>
+        <li>Mentaltrainerin Professional</li>
+        <li>Trauma-informiert</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Wege (Karussell) -->
+  <section class="band" id="wege" aria-labelledby="wege-title">
+    <div class="inner">
+      <div class="rail-head">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow">Angebote</p>
+          <h2 class="display h-l" id="wege-title">Wege, die dich <span class="voice" style="color:var(--sun)">stärken</span></h2>
+          <p class="lead">Vom unverbindlichen Kennenlernen bis zur Begleitung über ein ganzes Jahr. Du entscheidest, wie nah und wie tief.</p>
+        </div>
+        <div class="rail-controls">
+          <button class="rail-btn" type="button" data-rail="-1" aria-label="Vorheriges Angebot">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="rail-btn" type="button" data-rail="1" aria-label="Nächstes Angebot">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="rail" id="rail" tabindex="0" aria-label="Angebote, horizontal scrollbar">
+        <article class="path path--first">
+          <span class="path-tag">Hier starten alle</span>
+          <h3>Kostenloses Erst&shy;gespräch</h3>
+          <p>Wir schauen gemeinsam auf dein Anliegen und klären, ob und wie ich dich begleiten kann.</p>
+          <span class="path-meta">Kostenfrei · unverbindlich</span>
+          <a class="path-link" href="#kontakt">Termin anfragen →</a>
+        </article>
+        <article class="path">
+          <span class="path-tag">Persönlich</span>
+          <h3>1:1 Coaching</h3>
+          <p>Nur du und dein Thema. Neurocoaching als Basis, ergänzt um die Methoden, die zu dir passen.</p>
+          <span class="path-meta">Preis nach persönlichem Angebot</span>
+          <a class="path-link" href="#kontakt" data-topic="1:1 Coaching">Coaching anfragen →</a>
+        </article>
+        <article class="path">
+          <span class="path-tag">Jahresbegleitung</span>
+          <h3>Ein Jahr für dich</h3>
+          <p>Für alle, die sich bewusst ein ganzes Jahr Zeit für ihre Entwicklung nehmen und dabei kontinuierlich begleitet werden möchten.</p>
+          <span class="path-meta">[Leistungen ergänzen: Sitzungen, Workshops, Erreichbarkeit]</span>
+          <a class="path-link" href="#kontakt" data-topic="Ein Jahr für dich">Jahresbegleitung anfragen →</a>
+        </article>
+        <article class="path">
+          <span class="path-tag">Workshops</span>
+          <h3>Tage für dich</h3>
+          <ul>
+            <li>Innere Motivation</li>
+            <li>Ein Tag für Dich mit Klangschalen</li>
+            <li>Systemische Aufstellung</li>
+          </ul>
+          <span class="path-meta">Termine kommen demnächst</span>
+          <a class="path-link" href="#kontakt" data-topic="Workshop">Termine erfragen →</a>
+        </article>
+        <article class="path">
+          <span class="path-tag">Für Organisationen</span>
+          <h3>Mentale Stärke an einem Tag</h3>
+          <p>Für Unternehmen, Schulen und Vereine: Fokus, Gelassenheit und Werkzeuge für den Alltag, inklusive Workbook.</p>
+          <span class="path-meta">Inhouse-Workshop</span>
+          <a class="path-link" href="#kontakt" data-topic="Workshop für Organisation">Workshop anfragen →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statement -->
+  <section class="band band--night2 statement" aria-label="Leitgedanke">
+    <div class="inner">
+      <h2 class="display h-l">Stabil wie ein Baum im Sturm. <span class="voice" style="color:var(--sun)">Tief verwurzelt und trotzdem frei.</span></h2>
+      <div style="display:flex; flex-direction:column; gap:1.4rem">
+        <p class="lead">Gemeinsam lösen wir, was dich festhält, und stärken, was dich trägt. In deinem Tempo und mit Werkzeugen, die im Alltag wirklich tragen.</p>
+        <div><a class="btn btn--sun" href="#kontakt">Jetzt starten</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Drei Säulen -->
+  <section class="band band--light" id="themen" aria-labelledby="themen-title">
+    <div class="inner">
+      <div class="section-head">
+        <p class="eyebrow">Deine Themen</p>
+        <h2 class="display h-l" id="themen-title">Klingt einer dieser Sätze nach dir?</h2>
+        <p class="lead">Du musst nicht wissen, was genau dahinter steckt. Wähle einfach den Satz, der dir am nächsten ist. Den Rest finden wir gemeinsam heraus.</p>
+      </div>
+      <div class="pillars">
+        <article class="pillar">
+          <h3 class="pillar-name">Stärke gewinnen</h3>
+          <p class="pillar-quote">„Ich zweifle ständig an mir und stelle mich hinten an.“</p>
+          <p><strong>Was sich verändert:</strong> Du fühlst dich entlastet, hast mehr Energie, nimmst dich selbst an und kannst dich besser abgrenzen.</p>
+          <a class="btn btn--ink" href="#kontakt" data-topic="Stärke gewinnen">Darüber sprechen</a>
+        </article>
+        <article class="pillar">
+          <h3 class="pillar-name">Grenzen sprengen</h3>
+          <p class="pillar-quote">„Ich trage alte Lasten mit mir und komme nicht los.“</p>
+          <p><strong>Was sich verändert:</strong> Du gewinnst die Entscheidungskraft, Altes loszulassen, und erkennst, dass die Lösung in dir liegt.</p>
+          <a class="btn btn--ink" href="#kontakt" data-topic="Grenzen sprengen">Darüber sprechen</a>
+        </article>
+        <article class="pillar">
+          <h3 class="pillar-name">Neue Wege</h3>
+          <p class="pillar-quote">„Ich spüre, da ist mehr, aber ich weiß nicht wohin.“</p>
+          <p><strong>Was sich verändert:</strong> Du entwickelst eine Vision, triffst Entscheidungen aus freiem Willen und gehst mutig den ersten Schritt.</p>
+          <a class="btn btn--ink" href="#kontakt" data-topic="Neue Wege">Darüber sprechen</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stimmen -->
+  <section class="band" aria-labelledby="stimmen-title">
+    <div class="inner">
+      <div class="section-head">
+        <p class="eyebrow">Stimmen</p>
+        <h2 class="display h-l" id="stimmen-title">Was Klientinnen und Klienten erleben</h2>
+      </div>
+      <div class="voices-feature">
+        <figure class="voice-big" style="margin:0">
+          <blockquote>Ich habe mich im Coaching von Anfang an sehr wohlgefühlt. Die einfühlsame Begleitung und die Gespräche in meinem eigenen Tempo haben mir besonders gutgetan. Ich fühlte mich verstanden und unterstützt und war überrascht, wie schnell wir gemeinsam zu einem für mich so wertvollen Ergebnis gekommen sind.</blockquote>
+          <figcaption class="who"><b>Detlef W.</b> · 56 Jahre · 1:1 Coaching</figcaption>
+        </figure>
+        <ul class="voice-list">
+          <li>
+            <blockquote>„Nach einer Stunde fühle ich mich, als wäre ich im Urlaub gewesen. Mein Kopf ist klar und ich bin wieder voller Energie.“</blockquote>
+            <span class="who"><b>Olga L.</b> · 45 Jahre · Mentaltraining</span>
+          </li>
+          <li>
+            <blockquote>„Früher habe ich gesagt: Das kann ich nicht. Jetzt sage ich: Das kann ich noch nicht.“</blockquote>
+            <span class="who"><b>Lukas T.</b> · 23 Jahre · 1:1 Coaching</span>
+          </li>
+          <li>
+            <blockquote>„Ich habe den Kurs total falsch eingeschätzt. Jetzt fühle ich mich fitter und habe mehr Elan.“</blockquote>
+            <span class="who"><b>Rita S.</b> · 70 Jahre · Mentaltraining</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Über mich -->
+  <section class="band band--paper" id="ueber-mich" aria-labelledby="about-title">
+    <div class="inner about-grid">
+      <div class="rings rings--square" role="img" aria-label="Platzhalter für ein Foto von Derya Rein im Coaching oder in der Natur">
+        <span class="photo-label">[Foto Derya im Coaching-Raum oder in der Natur]</span>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">Über mich</p>
+        <h2 class="display h-l" id="about-title">Analytisch im Blick. <span class="voice" style="color:var(--sun-deep)">Intuitiv im Gespür.</span></h2>
+        <p>Hallo, ich bin Derya. Mich interessiert der Mensch hinter den Masken. Wenn sich jemand wirklich zeigt, berührt mich das tief. Und es erfüllt mich, wenn ich sehe, wie Menschen ihre Stärke wiederfinden.</p>
+        <p>Zuerst schaffe ich den Überblick, dann gehen wir gemeinsam in die Tiefe, so weit, wie du gehen möchtest. Ich höre zu, nehme Zwischentöne wahr und nehme dich wertfrei an. Mein Ziel: Du gehst gestärkt und mit neuer Energie aus jedem Coaching.</p>
+        <p>Meine eigene Kraft tanke ich in der Natur, im Garten und unterwegs mit dem Wohnmobil.</p>
+        <ol class="timeline" reversed aria-label="Ausbildungen">
+          <li><span class="yr">2026</span><span>Trauma-Informed Coaching <span class="org">nach SCGD &amp; GPTG</span></span></li>
+          <li><span class="yr">2025</span><span>Business &amp; Life Coach (IHK) <span class="org">Steffen Kirchner Academy</span></span></li>
+          <li><span class="yr">2025</span><span>Systemische Beraterin</span></li>
+          <li><span class="yr">2023</span><span>Neurocoach &amp; Glückscoach <span class="org">Akademie für Neurocoaching</span></span></li>
+          <li><span class="yr">2022</span><span>Mentaltrainerin Professional <span class="org">Powerbrain Institut</span></span></li>
+          <li><span class="yr">2010</span><span>Gesundheitspraktikerin <span class="org">BfG</span></span></li>
+        </ol>
+        <div><a class="btn btn--ink" href="#kontakt">Lass uns kennenlernen</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fakten -->
+  <section class="band" aria-labelledby="fakten-title">
+    <div class="inner">
+      <div class="section-head">
+        <p class="eyebrow">Auf einen Blick</p>
+        <h2 class="display h-m" id="fakten-title">Fundiert ausgebildet. Persönlich begleitet.</h2>
+      </div>
+      <div class="facts">
+        <div class="fact"><span class="fact-num">6</span><p>Aus- und Weiterbildungen, von Mentaltraining bis Trauma-informiertem Coaching</p></div>
+        <div class="fact"><span class="fact-num"><small>seit</small> 2010</span><p>Gesundheitspraktikerin (BfG): hier begann mein Weg</p></div>
+        <div class="fact"><span class="fact-num">90<small>min</small></span><p>dauert die erste Sitzung, damit wir wirklich ankommen</p></div>
+        <div class="fact"><span class="fact-num">0<small>€</small></span><p>kostet dein Erstgespräch. Unverbindlich, ohne Haken</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ablauf -->
+  <section class="band band--light" id="ablauf" aria-labelledby="ablauf-title">
+    <div class="inner">
+      <div class="section-head">
+        <p class="eyebrow">Ablauf</p>
+        <h2 class="display h-l" id="ablauf-title">So läuft ein Coaching mit mir ab</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Erstgespräch</h3><p>Kurz, kostenlos und unverbindlich. Wir klären alles, was für den Start wichtig ist.</p></li>
+        <li><h3>Erste Sitzung</h3><p>Rund 90 Minuten, in Kenzingen oder online. Wir legen dein Ziel fest, und es darf sich unterwegs verändern.</p></li>
+        <li><h3>Der Prozess</h3><p>Neurocoaching als Basis, ergänzt durch Methoden, die zu dir passen.</p></li>
+        <li><h3>Für deinen Alltag</h3><p>Tipps und ein Handout zur Selbsthilfe für die Zeit zwischen den Sitzungen.</p></li>
+        <li><h3>Abschluss</h3><p>Ein Abschlussgespräch, in dem wir auf deinen Weg zurückblicken.</p></li>
+      </ol>
+      <div class="methods" aria-label="Methoden">
+        <span class="methods-label">Methoden, die ich einsetze</span>
+        <span class="chip">Neurocoaching</span>
+        <span class="chip">EMDR &amp; ROW</span>
+        <span class="chip">MFT</span>
+        <span class="chip">Genogramm-Arbeit</span>
+        <span class="chip">Systemische Aufstellung</span>
+        <span class="chip">Geführte Meditation</span>
+        <span class="chip">Körper- und Wahrnehmungsarbeit</span>
+        <span class="chip">Entspannungstechniken</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Geschenk: Meditation -->
+  <section class="band band--night2" aria-labelledby="gift-title">
+    <div class="inner gift">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Noch nicht bereit für ein Gespräch?</p>
+        <h2 class="display h-l" id="gift-title">Zur Ruhe kommen in 8 Minuten</h2>
+        <p class="lead">Eine geführte Meditation von mir für Momente, in denen alles zu viel ist. Kein Vorwissen nötig, einfach anhören. Kostenlos per E-Mail, jederzeit abmeldbar.</p>
+      </div>
+      <div class="player on-night">
+        <div class="player-top">
+          <span class="play" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <div>
+            <div class="player-title">Zur Ruhe kommen</div>
+            <div class="player-sub">Geführte Meditation · 8 Minuten · gesprochen von Derya</div>
+          </div>
+        </div>
+        <div class="wave" id="wave" aria-hidden="true"></div>
+        <form class="inline-form" id="gift-form" novalidate>
+          <div class="field">
+            <label for="gift-email">E-Mail-Adresse</label>
+            <input id="gift-email" name="email" type="email" autocomplete="email" required placeholder="du@beispiel.de">
+          </div>
+          <button class="btn btn--sun" type="submit">Meditation zusenden</button>
+          <p class="form-status" id="gift-status" role="status" aria-live="polite" style="width:100%"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="band band--paper" id="fragen" aria-labelledby="faq-title">
+    <div class="inner">
+      <div class="section-head">
+        <p class="eyebrow">Fragen</p>
+        <h2 class="display h-l" id="faq-title">Häufige Fragen</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Was ist Neurocoaching? <span class="plus" aria-hidden="true">+</span></summary>
+          <p>Neurocoaching verbindet Coaching mit Erkenntnissen aus der Gehirnforschung. Viele unserer Reaktionen laufen automatisch ab, weil unser Gehirn frühere Erfahrungen als Muster abgespeichert hat. Im Coaching machen wir diese Muster sichtbar und verstehen, wodurch sie ausgelöst werden. Dann üben wir gezielt neue Denk- und Handlungsweisen, bis sie sich im Alltag ganz selbstverständlich anfühlen. Denn unser Gehirn bleibt ein Leben lang lern- und veränderungsfähig.</p>
+        </details>
+        <details>
+          <summary>Was ist trauma-informiertes Coaching? <span class="plus" aria-hidden="true">+</span></summary>
+          <p>Trauma-informiert heißt: Ich weiß, wie belastende Erfahrungen im Körper und im Nervensystem nachwirken können, und gestalte das Coaching entsprechend achtsam. Sicherheit und Stabilität kommen zuerst. Du bestimmst Tempo und Tiefe, und nichts geschieht gegen deinen Willen. Trauma-informiertes Coaching ist keine Traumatherapie. Wenn ich merke, dass du therapeutische Unterstützung brauchst, sage ich dir das offen.</p>
+        </details>
+        <details>
+          <summary>Muss ich vorher wissen, woran ich arbeiten will? <span class="plus" aria-hidden="true">+</span></summary>
+          <p>Nein. Viele kennen ihr Ziel am Anfang nicht genau, oder es verändert sich im Gespräch. Genau dafür ist die erste Sitzung da.</p>
+        </details>
+        <details>
+          <summary>Wo findet das Coaching statt? <span class="plus" aria-hidden="true">+</span></summary>
+          <p>Ganz wie es dir lieber ist: persönlich in Kenzingen oder online per Video, bequem von zu Hause aus.</p>
+        </details>
+        <details>
+          <summary>Wie viele Sitzungen brauche ich? <span class="plus" aria-hidden="true">+</span></summary>
+          <p>Das lässt sich vorab nicht festlegen, denn jeder Mensch und jedes Thema ist anders. Wir gehen in deinem Tempo und so weit, wie du gehen möchtest. Gemeinsam schauen wir immer wieder, wo du stehst und was du noch brauchst.</p>
+        </details>
+        <details>
+          <summary>Was kostet ein Coaching? <span class="plus" aria-hidden="true">+</span></summary>
+          <p>Das hängt davon ab, was du dir wünschst und wie viel Begleitung dein Thema braucht. Deshalb gibt es bei mir keine Pauschalpreise: Nach unserem kostenlosen Erstgespräch erstelle ich dir ein persönliches Angebot, das genau zu dir passt. So weißt du vorher, woran du bist, und entscheidest in Ruhe.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abschluss + Kontakt -->
+  <section class="band finale" id="kontakt" aria-labelledby="kontakt-title">
+    <div class="inner finale-grid">
+      <div style="display:flex; flex-direction:column; gap:1.3rem; min-width:0">
+        <p class="eyebrow">Bereit für deinen nächsten Schritt?</p>
+        <h2 class="display h-l" id="kontakt-title">Der erste Schritt ist ein Gespräch.</h2>
+        <p>Schreib mir in ein paar Sätzen, was dich gerade beschäftigt. Ich melde mich persönlich und wir finden einen Termin für dein kostenloses Erstgespräch.</p>
+        <div class="contact-lines">
+          <span>Kenzingen · [Straße, PLZ]</span>
+          <span>[TELEFON]</span>
+          <span>[E-MAIL]</span>
+        </div>
+      </div>
+      <form class="contact-card" id="contact-form" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="c-first">Vorname</label>
+            <input id="c-first" name="vorname" type="text" autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="c-last">Nachname</label>
+            <input id="c-last" name="nachname" type="text" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="field">
+          <label for="c-email">E-Mail-Adresse *</label>
+          <input id="c-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="c-topic">Worum geht es?</label>
+          <select id="c-topic" name="thema">
+            <option>Kostenloses Erstgespräch</option>
+            <option>Stärke gewinnen</option>
+            <option>Grenzen sprengen</option>
+            <option>Neue Wege</option>
+            <option>1:1 Coaching</option>
+            <option>Ein Jahr für dich</option>
+            <option>Workshop</option>
+            <option>Workshop für Organisation</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="c-msg">Was beschäftigt dich gerade?</label>
+          <textarea id="c-msg" name="nachricht"></textarea>
+        </div>
+        <button class="btn btn--ink" type="submit">Erstgespräch anfragen</button>
+        <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+        <p class="fine">Deine Angaben behandle ich vertraulich. Mehr dazu in der <a href="#datenschutz">Datenschutzerklärung</a>.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div class="footer-grid">
+      <div>
+        <a class="wordmark" href="#start">Derya Rein</a>
+        <p style="margin:.4rem 0 0; color:var(--on-night-soft)">Neurocoaching · Mentaltraining · Systemische Beratung</p>
+      </div>
+      <nav aria-label="Fußzeile">
+        <ul>
+          <li><a href="#wege">Angebote</a></li>
+          <li><a href="#ueber-mich">Über mich</a></li>
+          <li><a href="#fragen">Fragen</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="#impressum" id="impressum">Impressum</a></li>
+          <li><a href="#datenschutz" id="datenschutz">Datenschutz</a></li>
+          <li><a href="#facebook">Facebook</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="copy">© 2026 Derya Rein · Stärke dich selbst.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Mobiles Menü
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.getElementById('nav-links');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+  });
+  links.addEventListener('click', function(e){
+    if (e.target.closest('a')) { links.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); }
+  });
+
+  // Angebots-Karussell
+  var rail = document.getElementById('rail');
+  document.querySelectorAll('[data-rail]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var card = rail.querySelector('.path');
+      var step = card ? card.getBoundingClientRect().width + 19 : 320;
+      rail.scrollBy({left: step * Number(btn.dataset.rail), behavior: 'smooth'});
+    });
+  });
+
+  // Thema aus Karten ins Formular übernehmen
+  var topic = document.getElementById('c-topic');
+  document.querySelectorAll('[data-topic]').forEach(function(a){
+    a.addEventListener('click', function(){ topic.value = a.dataset.topic; });
+  });
+
+  // Wellenform für die Meditation
+  var wave = document.getElementById('wave');
+  for (var i = 0; i < 48; i++) {
+    var s = document.createElement('span');
+    var h = 18 + Math.round(70 * Math.abs(Math.sin(i * 0.55) * Math.cos(i * 0.21)));
+    s.style.height = h + '%';
+    if (i < 14) s.className = 'on';
+    wave.appendChild(s);
+  }
+
+  // Formulare: noch ohne Anbindung an ein Postfach
+  function wire(formId, statusId, emailId){
+    var form = document.getElementById(formId);
+    var status = document.getElementById(statusId);
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var email = document.getElementById(emailId);
+      status.classList.add('is-shown');
+      if (!email.value || !email.checkValidity()) {
+        status.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein, z. B. name@beispiel.de.';
+        email.focus();
+        return;
+      }
+      status.textContent = 'Vorschau: Dieses Formular ist noch nicht mit einem Postfach verbunden. Es wurde nichts gesendet.';
+    });
+  }
+  wire('gift-form', 'gift-status', 'gift-email');
+  wire('contact-form', 'contact-status', 'c-email');
+})();
+</script>
+</body>
+</html>
