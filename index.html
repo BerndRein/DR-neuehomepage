@@ -193,18 +193,6 @@
   .creds-list li{font-family:var(--font-display); font-weight:800; font-variation-settings:'wdth' 75; text-transform:uppercase; letter-spacing:.06em; font-size:1.05rem; color:var(--on-night);}
 
   /* Wege-Karussell (wie die Event-Karten) */
-  .rail-head{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:1.5rem; margin-bottom:2.4rem;}
-  .rail-controls{display:flex; gap:.6rem;}
-  .rail-btn{
-    width:52px; height:52px; border-radius:50%; border:1px solid var(--night-line);
-    background:transparent; color:var(--on-night); cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
-  }
-  .rail-btn:hover{background:var(--on-night); color:var(--night);}
-  .rail{
-    display:grid; grid-auto-flow:column; grid-auto-columns:minmax(280px, 360px);
-    gap:1.2rem; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:1.2rem;
-    scrollbar-width:thin; scrollbar-color:var(--sun) transparent;
-  }
   .path{
     scroll-snap-align:start; background:var(--night-2); border:1px solid var(--night-line);
     padding:1.8rem 1.6rem; display:flex; flex-direction:column; gap:.9rem; min-height:380px;
@@ -224,6 +212,32 @@
   }
   .path--first .path-link{color:var(--night);}
   .path-link:hover{text-decoration:underline; text-underline-offset:4px;}
+
+  /* Pakete */
+  .start-strip{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.2rem 2rem; background:var(--sun); color:var(--night); padding:1.6rem 1.8rem; margin-bottom:1.2rem;}
+  .start-strip > div{flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:.35rem;}
+  .start-strip .path-tag{color:var(--night);}
+  .start-strip h3{font-weight:850; font-variation-settings:'wdth' 75; text-transform:uppercase; font-size:1.8rem; line-height:1;}
+  .start-strip p{margin:0; color:#3A2A0E; max-width:62ch;}
+  .start-strip .btn--sun{background:var(--night); color:var(--sun);}
+  .start-strip .btn--sun:hover{background:#24342D;}
+  .packages{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.2rem; align-items:stretch;}
+  @media (max-width: 960px){ .packages{grid-template-columns:1fr;} }
+  .pkg,.extra{background:var(--night-2); border:1px solid var(--night-line); padding:1.9rem 1.7rem; display:flex; flex-direction:column; gap:.9rem; min-width:0;}
+  .pkg--featured{border:2px solid var(--sun);}
+  .pkg h3,.extra h3{font-weight:850; font-variation-settings:'wdth' 75; text-transform:uppercase; font-size:2rem; line-height:1;}
+  .pkg-promise{margin:0; font-family:var(--font-voice); font-style:italic; font-size:1.2rem; line-height:1.4; color:var(--on-night);}
+  .pkg-list{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:.45rem; color:var(--on-night-soft);}
+  .pkg-list li{padding-left:1.4rem; position:relative;}
+  .pkg-list li::before{content:"✓"; position:absolute; left:0; color:var(--sun); font-weight:800;}
+  .pkg-price{margin:auto 0 0; padding-top:.8rem; border-top:1px solid var(--night-line); font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 75; font-size:1.7rem; color:var(--on-night); font-variant-numeric:tabular-nums;}
+  .pkg-price--small{font-size:1.15rem; margin-top:0;}
+  .todo-dark{background:rgba(233,162,59,.22); padding:0 .25rem;}
+  .extras{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.2rem; margin-top:1.2rem;}
+  @media (max-width: 760px){ .extras{grid-template-columns:1fr;} }
+  .extra p{margin:0; color:var(--on-night-soft);}
+  .extra .path-link{margin-top:auto;}
+  .price-note{margin:1.4rem 0 0; font-size:.88rem; color:var(--on-night-soft);}
 
   /* Statement-Band */
   .statement{text-align:left;}
@@ -445,62 +459,81 @@
   <!-- Wege (Karussell) -->
   <section class="band" id="wege" aria-labelledby="wege-title">
     <div class="inner">
-      <div class="rail-head">
-        <div class="section-head" style="margin-bottom:0">
-          <p class="eyebrow">Angebote</p>
-          <h2 class="display h-l" id="wege-title">Wege, die dich <span class="voice" style="color:var(--sun)">stärken</span></h2>
-          <p class="lead">Vom unverbindlichen Kennenlernen bis zur Begleitung über ein ganzes Jahr. Du entscheidest, wie nah und wie tief.</p>
-        </div>
-        <div class="rail-controls">
-          <button class="rail-btn" type="button" data-rail="-1" aria-label="Vorheriges Angebot">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="rail-btn" type="button" data-rail="1" aria-label="Nächstes Angebot">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
-        </div>
+      <div class="section-head">
+        <p class="eyebrow">Angebote</p>
+        <h2 class="display h-l" id="wege-title">Wege, die dich <span class="voice" style="color:var(--sun)">stärken</span></h2>
+        <p class="lead">Drei Pakete, je nachdem, wie viel Begleitung dein Thema braucht. Jeder Weg beginnt mit dem kostenlosen Erstgespräch. Danach bekommst du dein persönliches Angebot.</p>
       </div>
-      <div class="rail" id="rail" tabindex="0" aria-label="Angebote, horizontal scrollbar">
-        <article class="path path--first">
+
+      <div class="start-strip">
+        <div>
           <span class="path-tag">Hier starten alle</span>
-          <h3>Kostenloses Erst&shy;gespräch</h3>
-          <p>Wir schauen gemeinsam auf dein Anliegen und klären, ob und wie ich dich begleiten kann.</p>
-          <span class="path-meta">20 Minuten · kostenfrei · online buchbar</span>
-          <a class="path-link" href="#kontakt" data-book>Termin buchen →</a>
+          <h3>Kostenloses Erstgespräch</h3>
+          <p>20 Minuten am Telefon oder per Video. Wir schauen auf dein Anliegen und finden heraus, welcher Weg zu dir passt.</p>
+        </div>
+        <a class="btn btn--sun" href="#kontakt" data-book>Erstgespräch buchen</a>
+      </div>
+
+      <div class="packages">
+        <article class="pkg">
+          <span class="path-tag">Kompakt</span>
+          <h3>Klarheit</h3>
+          <p class="pkg-promise">Du erkennst, was dich gerade blockiert, und gehst deinen nächsten Schritt mit einem klaren Plan.</p>
+          <ul class="pkg-list">
+            <li>3 Sitzungen, die erste rund 90 Minuten</li>
+            <li>Für ein konkretes Anliegen oder eine Entscheidung</li>
+            <li>Handout zur Selbsthilfe für deinen Alltag</li>
+            <li>Zeitraum: etwa 6 Wochen</li>
+          </ul>
+          <p class="pkg-price">ab <span class="todo-dark">[PREIS]</span> €</p>
+          <a class="path-link" href="#kontakt" data-book data-topic="Klarheit (3 Sitzungen)">Erstgespräch buchen →</a>
         </article>
-        <article class="path">
-          <span class="path-tag">Persönlich</span>
-          <h3>1:1 Coaching</h3>
-          <p>Nur du und dein Thema. Neurocoaching als Basis, ergänzt um die Methoden, die zu dir passen.</p>
-          <span class="path-meta">Preis nach persönlichem Angebot</span>
-          <a class="path-link" href="#kontakt" data-topic="1:1 Coaching">Coaching anfragen →</a>
+        <article class="pkg pkg--featured">
+          <span class="path-tag">Intensiv</span>
+          <h3>Begleitung</h3>
+          <p class="pkg-promise">Du löst alte Muster, gewinnst Stärke zurück und verankerst neue Wege fest in deinem Alltag.</p>
+          <ul class="pkg-list">
+            <li>6 Sitzungen, die erste rund 90 Minuten</li>
+            <li>Für tiefere Themen wie Selbstzweifel, alte Lasten oder Neuorientierung</li>
+            <li>Handouts und Übungen zwischen den Sitzungen</li>
+            <li>Abschlussgespräch mit Rückblick auf deinen Weg</li>
+            <li>Zeitraum: etwa 3 Monate</li>
+          </ul>
+          <p class="pkg-price">ab <span class="todo-dark">[PREIS]</span> €</p>
+          <a class="path-link" href="#kontakt" data-book data-topic="Begleitung (6 Sitzungen)">Erstgespräch buchen →</a>
         </article>
-        <article class="path">
+        <article class="pkg">
           <span class="path-tag">Jahresbegleitung</span>
           <h3>Ein Jahr für dich</h3>
-          <p>Für alle, die sich bewusst ein ganzes Jahr Zeit für ihre Entwicklung nehmen und dabei kontinuierlich begleitet werden möchten.</p>
-          <span class="path-meta">[Leistungen ergänzen: Sitzungen, Workshops, Erreichbarkeit]</span>
-          <a class="path-link" href="#kontakt" data-topic="Ein Jahr für dich">Jahresbegleitung anfragen →</a>
-        </article>
-        <article class="path">
-          <span class="path-tag">Workshops</span>
-          <h3>Tage für dich</h3>
-          <ul>
-            <li>Innere Motivation</li>
-            <li>Ein Tag für Dich mit Klangschalen</li>
-            <li>Systemische Aufstellung</li>
+          <p class="pkg-promise">Du nimmst dir bewusst ein ganzes Jahr für deine Entwicklung und wirst dabei kontinuierlich begleitet.</p>
+          <ul class="pkg-list">
+            <li>Eine Sitzung pro Monat, 12 Monate lang</li>
+            <li>Teilnahme an <span class="todo-dark">[ANZAHL]</span> Workshops</li>
+            <li>Zwischengespräche zu deinen Meilensteinen</li>
+            <li>Abschlussgespräch zum Jahresende</li>
           </ul>
-          <span class="path-meta">Termine kommen demnächst</span>
+          <p class="pkg-price">ab <span class="todo-dark">[PREIS]</span> €</p>
+          <a class="path-link" href="#kontakt" data-book data-topic="Ein Jahr für dich">Erstgespräch buchen →</a>
+        </article>
+      </div>
+
+      <div class="extras">
+        <article class="extra">
+          <span class="path-tag">Zum Kennenlernen</span>
+          <h3>Tage für dich</h3>
+          <p>Workshops in kleiner Gruppe: Innere Motivation, Ein Tag für Dich mit Klangschalen und Systemische Aufstellung. Ein guter Einstieg, um meine Arbeit zu erleben.</p>
+          <p class="pkg-price pkg-price--small">ab <span class="todo-dark">[PREIS]</span> € · Termine folgen</p>
           <a class="path-link" href="#kontakt" data-topic="Workshop">Termine erfragen →</a>
         </article>
-        <article class="path">
+        <article class="extra">
           <span class="path-tag">Für Organisationen</span>
           <h3>Mentale Stärke an einem Tag</h3>
           <p>Für Unternehmen, Schulen und Vereine: Fokus, Gelassenheit und Werkzeuge für den Alltag, inklusive Workbook.</p>
-          <span class="path-meta">Inhouse-Workshop</span>
+          <p class="pkg-price pkg-price--small">Preis auf Anfrage</p>
           <a class="path-link" href="#kontakt" data-topic="Workshop für Organisation">Workshop anfragen →</a>
         </article>
       </div>
+      <p class="price-note">Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet. Den genauen Preis legen wir nach dem Erstgespräch gemeinsam fest.</p>
     </div>
   </section>
 
@@ -708,7 +741,7 @@
         </details>
         <details>
           <summary>Was kostet ein Coaching? <span class="plus" aria-hidden="true">+</span></summary>
-          <p>Das hängt davon ab, was du dir wünschst und wie viel Begleitung dein Thema braucht. Deshalb gibt es bei mir keine Pauschalpreise: Nach unserem kostenlosen Erstgespräch erstelle ich dir ein persönliches Angebot, das genau zu dir passt. So weißt du vorher, woran du bist, und entscheidest in Ruhe.</p>
+          <p>Die Pakete beginnen bei den Preisen, die du oben unter Angebote findest. Wie viel Begleitung dein Thema wirklich braucht, klären wir im kostenlosen Erstgespräch. Danach bekommst du ein persönliches Angebot und entscheidest in Ruhe. Alle Preise sind Endpreise, als Kleinunternehmerin berechne ich keine Umsatzsteuer.</p>
         </details>
       </div>
     </div>
@@ -743,7 +776,8 @@
             <option>Stärke gewinnen</option>
             <option>Grenzen sprengen</option>
             <option>Neue Wege</option>
-            <option>1:1 Coaching</option>
+            <option>Klarheit (3 Sitzungen)</option>
+            <option>Begleitung (6 Sitzungen)</option>
             <option>Ein Jahr für dich</option>
             <option>Workshop</option>
             <option>Workshop für Organisation</option>
@@ -829,16 +863,6 @@
   });
   links.addEventListener('click', function(e){
     if (e.target.closest('a')) { links.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); }
-  });
-
-  // Angebots-Karussell
-  var rail = document.getElementById('rail');
-  document.querySelectorAll('[data-rail]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var card = rail.querySelector('.path');
-      var step = card ? card.getBoundingClientRect().width + 19 : 320;
-      rail.scrollBy({left: step * Number(btn.dataset.rail), behavior: 'smooth'});
-    });
   });
 
   // Thema aus Karten in die E-Mail übernehmen
