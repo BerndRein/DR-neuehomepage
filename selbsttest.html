@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<meta name="theme-color" content="#0E1714">
+<meta name="theme-color" content="#F7F3EC">
 <link rel="canonical" href="https://derya-rein.de/selbsttest.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Derya Rein">
@@ -25,21 +25,22 @@
 <style>
   /* Gleiche Tokens wie die Startseite. Eine Frage pro Bildschirm, große Antwortflächen. */
   :root{
-    --night:#0E1714;
-    --night-2:#16231E;
-    --night-line:rgba(236,239,232,.14);
+    --night:#F7F3EC;
+    --night-2:#FFFFFF;
+    --night-line:rgba(27,42,36,.13);
     --sage:#ECEFE8;
     --ink:#14201B;
     --ink-soft:#44524B;
     --paper:#F7F8F4;
-    --on-night:#ECEFE8;
-    --on-night-soft:#AEBBB3;
+    --on-night:#1B2A24;
+    --on-night-soft:#56645C;
     --sun:#E9A23B;
+    --accent:#C2185B;
     --sun-deep:#B8740F;
     --font-display:'Archivo', 'Arial Narrow', system-ui, sans-serif;
     --font-body:'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-voice:'Newsreader', Georgia, 'Times New Roman', serif;
-    color-scheme:dark;
+    color-scheme:light;
   }
   *{box-sizing:border-box;}
   body{margin:0; background:var(--night); color:var(--on-night); font-family:var(--font-body); font-size:1.0625rem; line-height:1.6; -webkit-font-smoothing:antialiased;}
@@ -131,6 +132,19 @@
   .site-footer ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem 1.6rem;}
   .site-footer a{color:var(--on-night-soft); text-decoration:none; min-height:44px; display:inline-flex; align-items:center;}
   .site-footer a:hover{color:var(--on-night);}
+
+  /* Helle Fassung */
+  .eyebrow{color:var(--accent);}
+  .facts li::before{color:var(--accent);}
+  .progress-track{background:#E6E1D6;}
+  .progress-fill{background:var(--accent);}
+  .btn--sun{background:var(--accent); color:#FFFFFF;}
+  .btn--sun:hover{background:#A3124B;}
+  .answer:hover{border-color:var(--accent);}
+  .answer[aria-pressed="true"]{border-color:var(--accent); background:#FBE9F0;}
+  .result-card,.result-card .eyebrow{color:#1B2A24;}
+  .result-card .btn--sun{background:#1B2A24;}
+  .site-footer{--night:#0E1714; --night-2:#16231E; --night-line:rgba(236,239,232,.14); --on-night:#ECEFE8; --on-night-soft:#AEBBB3; --accent:#E9A23B; background:#0E1714; border-top:0; color:var(--on-night-soft);}
 </style>
 </head>
 <body>
@@ -148,7 +162,7 @@
     <!-- Start -->
     <section id="intro" class="stack" aria-labelledby="intro-title">
       <p class="eyebrow">Selbsttest</p>
-      <h1 class="display h-l" id="intro-title">Welches Thema ist <span class="voice" style="color:var(--sun)">gerade deins?</span></h1>
+      <h1 class="display h-l" id="intro-title">Welches Thema ist <span class="voice" style="color:var(--accent)">gerade deins?</span></h1>
       <p class="lead">Manchmal spürt man nur, dass etwas nicht mehr stimmt. Diese sieben Fragen helfen dir, genauer hinzuschauen: Geht es bei dir gerade um Stärke, ums Loslassen oder um neue Wege? Am Ende bekommst du einen ersten Schritt, den du heute schon gehen kannst.</p>
       <ul class="facts"><li>7 Fragen</li><li>2 Minuten</li><li>Ergebnis sofort</li><li>Ohne Anmeldung</li></ul>
       <div class="btn-row"><button class="btn btn--sun" type="button" id="start">Test starten</button></div>

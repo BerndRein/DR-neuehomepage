@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<meta name="theme-color" content="#0E1714">
+<meta name="theme-color" content="#F7F3EC">
 <link rel="canonical" href="https://derya-rein.de/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Derya Rein">
@@ -24,26 +24,28 @@
 <meta name="description" content="Derya Rein – Neurocoach, Mentaltrainerin und Systemische Beraterin. Raus aus alten Mustern. Rein in deine Kraft. Kostenloses Erstgespräch in Kenzingen oder online.">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>
-  /* Layout: Bühne wie bei einem großen Event – dunkle, kraftvolle Bänder im Wechsel mit hellen Ruhezonen; Jahresringe als Motiv für „tief verwurzelt“. */
+  /* Layout: heller, warmer Grund mit klarer Event-Typografie; ein dunkles Band (Leitgedanke) und die Fußzeile geben Halt; Jahresringe als Motiv für „tief verwurzelt“. */
   :root{
-    --night:#0E1714;        /* Grund: Waldnacht */
-    --night-2:#16231E;
-    --night-line:rgba(236,239,232,.14);
+    --night:#F7F3EC;        /* Grund: warmer Sand */
+    --night-2:#FFFFFF;
+    --night-line:rgba(27,42,36,.13);
     --sage:#ECEFE8;         /* helle Ruhezonen */
     --sage-2:#DDE3D8;
     --ink:#14201B;
     --ink-soft:#44524B;
     --paper:#F7F8F4;
-    --on-night:#ECEFE8;
-    --on-night-soft:#AEBBB3;
-    --sun:#E9A23B;          /* Akzent: Sonnenaufgang, Kraft */
+    --on-night:#1B2A24;
+    --on-night-soft:#56645C;
+    --sun:#E9A23B;          /* Flächen: Sonnenaufgang, Kraft */
+    --accent:#C2185B;       /* Schrift-Akzent: Magenta aus dem Logo */
+    --on-sun:#1B2A24;
     --sun-deep:#B8740F;
     --font-display:'Archivo', 'Arial Narrow', system-ui, sans-serif;
     --font-body:'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-voice:'Newsreader', Georgia, 'Times New Roman', serif;
     --gutter-l:max(16px, env(safe-area-inset-left, 0px));
     --gutter-r:max(16px, env(safe-area-inset-right, 0px));
-    color-scheme:dark;
+    color-scheme:light;
   }
 
   *{box-sizing:border-box;}
@@ -122,7 +124,7 @@
   /* Header */
   .site-header{
     position:sticky; top:env(safe-area-inset-top, 0px); z-index:50;
-    background:rgba(14,23,20,.92);
+    background:rgba(247,243,236,.94);
     backdrop-filter:saturate(140%) blur(10px);
     border-bottom:1px solid var(--night-line);
   }
@@ -414,6 +416,30 @@
   .footer-grid a{color:var(--on-night-soft); text-decoration:none; min-height:44px; display:inline-flex; align-items:center;}
   .footer-grid a:hover{color:var(--on-night);}
   .copy{color:var(--on-night-soft); font-size:.9rem; margin:1.6rem 0 0;}
+
+  /* Helle Fassung: Magenta für Schrift-Akzente, Orange für Flächen mit dunkler Schrift */
+  .eyebrow,.band--light .eyebrow,.band--paper .eyebrow{color:var(--accent);}
+  .hero h1 .sun{color:var(--accent);}
+  .hero-note span::before,.pkg-list li::before,.who b,.fact-num small,.path-tag,.path-link{color:var(--accent);}
+  .voice-big blockquote::before,.voice-big blockquote::after{color:var(--accent);}
+  .fact{border-top-color:var(--accent);}
+  .pkg--featured{border-color:var(--accent);}
+  .test-teaser-cta{color:var(--accent);}
+  .btn--sun{background:var(--accent); color:#FFFFFF;}
+  .btn--sun:hover{background:#A3124B;}
+  .nav-links a.btn--sun,.nav-links a.btn--sun:hover{color:#FFFFFF;}
+  .wave span.on{background:var(--accent);}
+  .hero-quote,.path--first,.path--first .path-tag,.path--first .path-meta,.path--first .path-link,
+  .start-strip,.start-strip .path-tag,.play,.finale,.finale .eyebrow{color:var(--on-sun);}
+  .start-strip .btn--sun{background:var(--on-sun); color:#FFFFFF;}
+  .start-strip .btn--sun:hover{background:#2C3E36;}
+
+  /* Bewusst dunkel: Leitgedanke und Fußzeile */
+  .keep-dark{--night:#0E1714; --night-2:#16231E; --night-line:rgba(236,239,232,.14); --on-night:#ECEFE8; --on-night-soft:#AEBBB3; --accent:#E9A23B; color:var(--on-night);}
+  .keep-dark .btn--sun{background:var(--sun); color:#0E1714;}
+  .keep-dark .btn--sun:hover{background:#F3B658;}
+  .site-footer.keep-dark{background:#0E1714; border-top:0;}
+  .statement.keep-dark{background:#16231E;}
 </style>
 </head>
 <body>
@@ -482,7 +508,7 @@
     <div class="inner">
       <div class="section-head">
         <p class="eyebrow">Angebote</p>
-        <h2 class="display h-l" id="wege-title">Wege, die dich <span class="voice" style="color:var(--sun)">stärken</span></h2>
+        <h2 class="display h-l" id="wege-title">Wege, die dich <span class="voice" style="color:var(--accent)">stärken</span></h2>
         <p class="lead">Drei Pakete, je nachdem, wie viel Begleitung dein Thema braucht. Jeder Weg beginnt mit dem kostenlosen Erstgespräch. Danach bekommst du dein persönliches Angebot.</p>
       </div>
 
@@ -559,9 +585,9 @@
   </section>
 
   <!-- Statement -->
-  <section class="band band--night2 statement" aria-label="Leitgedanke">
+  <section class="band band--night2 statement keep-dark" aria-label="Leitgedanke">
     <div class="inner">
-      <h2 class="display h-l">Stabil wie ein Baum im Sturm. <span class="voice" style="color:var(--sun)">Tief verwurzelt und trotzdem frei.</span></h2>
+      <h2 class="display h-l">Stabil wie ein Baum im Sturm. <span class="voice" style="color:var(--accent)">Tief verwurzelt und trotzdem frei.</span></h2>
       <div style="display:flex; flex-direction:column; gap:1.4rem">
         <p class="lead">Gemeinsam lösen wir, was dich festhält, und stärken, was dich trägt. In deinem Tempo und mit Werkzeugen, die im Alltag wirklich tragen.</p>
         <div><a class="btn btn--sun" href="#kontakt" data-book>Erstgespräch buchen</a></div>
@@ -828,7 +854,7 @@
   <a class="btn btn--sun" href="#kontakt" data-book>Termin buchen</a>
 </div>
 
-<footer class="site-footer">
+<footer class="site-footer keep-dark">
   <div class="inner">
     <div class="footer-grid">
       <div>

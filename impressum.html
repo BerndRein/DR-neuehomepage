@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<meta name="theme-color" content="#0E1714">
+<meta name="theme-color" content="#F7F3EC">
 <meta name="robots" content="noindex, follow">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>
@@ -18,7 +18,8 @@
     --sage-2:#DDE3D8;
     --ink:#14201B;
     --ink-soft:#44524B;
-    --paper:#F7F8F4;
+    --paper:#F7F3EC;
+    --accent:#C2185B;
     --on-night:#ECEFE8;
     --on-night-soft:#AEBBB3;
     --sun:#E9A23B;
@@ -60,6 +61,14 @@
   .site-footer ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem 1.6rem;}
   .site-footer a{color:var(--on-night-soft); text-decoration:none; min-height:44px; display:inline-flex; align-items:center;}
   .site-footer a:hover,.site-footer a[aria-current]{color:var(--on-night);}
+
+  /* Helle Fassung: helle Kopfzeile, Magenta für Links und Kennzeilen, Fußzeile bleibt dunkel */
+  a{color:var(--accent);}
+  .eyebrow{color:var(--accent);}
+  .site-header{background:var(--paper); color:var(--ink); border-bottom:1px solid rgba(27,42,36,.13);}
+  .site-header .wordmark{color:var(--ink);}
+  .site-header .wordmark small,.back{color:var(--ink-soft);}
+  .back:hover{color:var(--ink);}
 </style>
 </head>
 <body>
