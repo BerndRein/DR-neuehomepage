@@ -39,6 +39,7 @@
     --sun:#E9A23B;          /* Flächen: Sonnenaufgang, Kraft */
     --accent:#C2185B;       /* Schrift-Akzent: Magenta aus dem Logo */
     --on-sun:#1B2A24;
+    --apricot:#FAE5CF;      /* zarte Wärme-Fläche */
     --sun-deep:#B8740F;
     --font-display:'Archivo', 'Arial Narrow', system-ui, sans-serif;
     --font-body:'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -233,13 +234,11 @@
   .path-link:hover{text-decoration:underline; text-underline-offset:4px;}
 
   /* Pakete */
-  .start-strip{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.2rem 2rem; background:var(--sun); color:var(--night); padding:1.6rem 1.8rem; margin-bottom:1.2rem;}
+  .start-strip{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.2rem 2rem; background:var(--apricot); color:var(--on-sun); padding:1.6rem 1.8rem; margin-bottom:1.2rem;}
   .start-strip > div{flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:.35rem;}
-  .start-strip .path-tag{color:var(--night);}
+  .start-strip .path-tag{color:var(--accent);}
   .start-strip h3{font-weight:850; font-variation-settings:'wdth' 75; text-transform:uppercase; font-size:1.8rem; line-height:1;}
-  .start-strip p{margin:0; color:#3A2A0E; max-width:62ch;}
-  .start-strip .btn--sun{background:var(--night); color:var(--sun);}
-  .start-strip .btn--sun:hover{background:#24342D;}
+  .start-strip p{margin:0; color:var(--on-night-soft); max-width:62ch;}
   .packages{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.2rem; align-items:stretch;}
   @media (max-width: 960px){ .packages{grid-template-columns:1fr;} }
   .pkg,.extra{background:var(--night-2); border:1px solid var(--night-line); padding:1.9rem 1.7rem; display:flex; flex-direction:column; gap:.9rem; min-width:0;}
@@ -373,13 +372,13 @@
   .faq details p{margin:0 0 1.5rem; color:var(--ink-soft); max-width:68ch;}
 
   /* Abschluss + Kontakt */
-  .finale{background:var(--sun); color:var(--night);}
+  .finale{background:var(--apricot); color:var(--on-sun);}
   .finale-grid{display:grid; grid-template-columns:minmax(0, 1.1fr) minmax(0, 1fr); gap:clamp(2rem, 5vw, 4rem); align-items:start;}
   @media (max-width: 900px){ .finale-grid{grid-template-columns:1fr;} }
-  .finale .eyebrow{color:var(--night);}
+  .finale .eyebrow{color:var(--accent);}
   .finale p{margin:0; max-width:52ch; font-size:1.15rem;}
   .contact-lines{display:flex; flex-direction:column; gap:.3rem; font-weight:700; margin-top:1.4rem;}
-  .contact-card{background:var(--paper); color:var(--ink); padding:clamp(1.4rem, 3vw, 2.2rem); display:flex; flex-direction:column; gap:1rem;}
+  .contact-card{background:#FFFFFF; color:var(--ink); padding:clamp(1.4rem, 3vw, 2.2rem); display:flex; flex-direction:column; gap:1rem;}
   .contact-card .row{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem;}
   @media (max-width: 520px){ .contact-card .row{grid-template-columns:1fr;} }
   .fine{font-size:.85rem; color:var(--ink-soft); margin:0;}
@@ -430,9 +429,7 @@
   .nav-links a.btn--sun,.nav-links a.btn--sun:hover{color:#FFFFFF;}
   .wave span.on{background:var(--accent);}
   .hero-quote,.path--first,.path--first .path-tag,.path--first .path-meta,.path--first .path-link,
-  .start-strip,.start-strip .path-tag,.play,.finale,.finale .eyebrow{color:var(--on-sun);}
-  .start-strip .btn--sun{background:var(--on-sun); color:#FFFFFF;}
-  .start-strip .btn--sun:hover{background:#2C3E36;}
+  .play,.finale{color:var(--on-sun);}
 
   /* Bewusst dunkel: Leitgedanke und Fußzeile */
   .keep-dark{--night:#0E1714; --night-2:#16231E; --night-line:rgba(236,239,232,.14); --on-night:#ECEFE8; --on-night-soft:#AEBBB3; --accent:#E9A23B; color:var(--on-night);}
@@ -809,7 +806,7 @@
           <li><strong>Wir schauen auf dein Anliegen</strong> und klären, ob und wie ich dich begleiten kann</li>
           <li><strong>Kostenlos und ohne Verkaufsdruck.</strong> Du entscheidest danach in Ruhe</li>
         </ul>
-        <div><a class="btn btn--ink btn--big" href="#contact-card" data-book>Termin online buchen</a></div>
+        <div><a class="btn btn--sun btn--big" href="#contact-card" data-book>Termin online buchen</a></div>
         <div class="contact-lines">
           <span>Hauptstraße 12 · 79341 Kenzingen</span>
           <a href="tel:+4976449294280" style="color:inherit">07644 9294280</a>

@@ -36,6 +36,7 @@
     --on-night-soft:#56645C;
     --sun:#E9A23B;
     --accent:#C2185B;
+    --apricot:#FAE5CF;
     --sun-deep:#B8740F;
     --font-display:'Archivo', 'Arial Narrow', system-ui, sans-serif;
     --font-body:'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -102,10 +103,10 @@
   .link-btn[hidden]{display:none;}
 
   /* Ergebnis */
-  .result-card{background:var(--sun); color:var(--night); padding:clamp(1.6rem, 4vw, 2.4rem); display:flex; flex-direction:column; gap:1rem;}
+  .result-card{background:var(--apricot); color:var(--night); padding:clamp(1.6rem, 4vw, 2.4rem); display:flex; flex-direction:column; gap:1rem;}
   .result-card .eyebrow{color:var(--night);}
   .result-card .quote{font-family:var(--font-voice); font-style:italic; font-size:1.4rem; line-height:1.35; margin:0;}
-  .result-card p{margin:0; color:#2E220B; max-width:62ch;}
+  .result-card p{margin:0; color:var(--on-night-soft); max-width:62ch;}
   .second{font-size:.95rem;}
   .step{background:var(--night-2); border:1px solid var(--night-line); padding:1.6rem; display:flex; flex-direction:column; gap:.6rem;}
   .step h3{font-weight:850; font-variation-settings:'wdth' 80; text-transform:uppercase; font-size:1.3rem;}
@@ -142,7 +143,9 @@
   .btn--sun:hover{background:#A3124B;}
   .answer:hover{border-color:var(--accent);}
   .answer[aria-pressed="true"]{border-color:var(--accent); background:#FBE9F0;}
-  .result-card,.result-card .eyebrow{color:#1B2A24;}
+  .result-card{color:#1B2A24;}
+  .result-card .eyebrow,.result-card h2{color:var(--accent);}
+  .result-card .quote{color:#1B2A24;}
   .result-card .btn--sun{background:#1B2A24;}
   .site-footer{--night:#0E1714; --night-2:#16231E; --night-line:rgba(236,239,232,.14); --on-night:#ECEFE8; --on-night-soft:#AEBBB3; --accent:#E9A23B; background:#0E1714; border-top:0; color:var(--on-night-soft);}
 </style>
