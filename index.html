@@ -355,6 +355,23 @@
   .copy-btn{font:inherit; font-weight:700; font-size:.9rem; color:var(--ink); background:transparent; border:1px solid var(--ink-soft); border-radius:2px; padding:0 1rem; min-height:44px; cursor:pointer;}
   .copy-btn:hover{background:var(--ink); color:var(--paper);}
 
+  /* Online-Buchung */
+  .talk-facts{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.55rem; font-size:1.05rem;}
+  .talk-facts li{padding-left:1.6rem; position:relative;}
+  .talk-facts li::before{content:"✓"; position:absolute; left:0; font-weight:800;}
+  .btn--big{min-height:60px; padding:0 2.2rem; font-size:1rem;}
+  .book-bar{
+    position:fixed; left:0; right:0; bottom:0; z-index:55;
+    display:flex; align-items:center; justify-content:space-between; gap:.8rem;
+    background:var(--night); border-top:1px solid var(--night-line);
+    padding:.7rem max(16px, env(safe-area-inset-right, 0px)) calc(.7rem + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    box-shadow:0 -8px 24px rgba(0,0,0,.35);
+  }
+  .book-bar[hidden]{display:none !important;}
+  .book-bar-text{font-size:.9rem; color:var(--on-night-soft); line-height:1.3;}
+  .book-bar .btn{min-height:48px; padding:0 1.1rem; font-size:.8rem; flex:none;}
+  @media (min-width: 761px){ .book-bar{display:none !important;} }
+
   /* Footer */
   .site-footer{padding-block:3rem calc(2.2rem + env(safe-area-inset-bottom, 0px)); border-top:1px solid var(--night-line);}
   .footer-grid{display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;}
@@ -378,7 +395,7 @@
       <li><a href="#ueber-mich">Über mich</a></li>
       <li><a href="#ablauf">Ablauf</a></li>
       <li><a href="#fragen">Fragen</a></li>
-      <li><a class="btn btn--sun nav-cta" href="#kontakt">Erstgespräch</a></li>
+      <li><a class="btn btn--sun nav-cta" href="#kontakt" data-book>Erstgespräch buchen</a></li>
     </ul>
   </div>
 </header>
@@ -397,10 +414,10 @@
         </h1>
         <p class="lead">Du spürst, dass sich etwas verändern muss, weißt aber noch nicht genau was oder wie? Ich begleite dich behutsam und in deinem Tempo dabei, Blockaden zu lösen und deinen nächsten Schritt mit Klarheit zu gehen. Denn Veränderung darf auch leicht sein.</p>
         <div class="btn-row">
-          <a class="btn btn--sun" href="#kontakt">Kostenloses Erstgespräch</a>
+          <a class="btn btn--sun" href="#kontakt" data-book>Erstgespräch buchen</a>
           <a class="btn btn--ghost" href="#themen">Finde dein Thema</a>
         </div>
-        <p class="hero-note"><span>Unverbindlich</span><span>Persönlich</span><span>In Kenzingen oder online</span></p>
+        <p class="hero-note"><span>20 Minuten</span><span>Kostenlos &amp; unverbindlich</span><span>Am Telefon oder per Video</span></p>
       </div>
       <div style="position:relative; min-width:0">
         <figure class="photo">
@@ -448,8 +465,8 @@
           <span class="path-tag">Hier starten alle</span>
           <h3>Kostenloses Erst&shy;gespräch</h3>
           <p>Wir schauen gemeinsam auf dein Anliegen und klären, ob und wie ich dich begleiten kann.</p>
-          <span class="path-meta">Kostenfrei · unverbindlich</span>
-          <a class="path-link" href="#kontakt">Termin anfragen →</a>
+          <span class="path-meta">20 Minuten · kostenfrei · online buchbar</span>
+          <a class="path-link" href="#kontakt" data-book>Termin buchen →</a>
         </article>
         <article class="path">
           <span class="path-tag">Persönlich</span>
@@ -493,7 +510,7 @@
       <h2 class="display h-l">Stabil wie ein Baum im Sturm. <span class="voice" style="color:var(--sun)">Tief verwurzelt und trotzdem frei.</span></h2>
       <div style="display:flex; flex-direction:column; gap:1.4rem">
         <p class="lead">Gemeinsam lösen wir, was dich festhält, und stärken, was dich trägt. In deinem Tempo und mit Werkzeugen, die im Alltag wirklich tragen.</p>
-        <div><a class="btn btn--sun" href="#kontakt">Jetzt starten</a></div>
+        <div><a class="btn btn--sun" href="#kontakt" data-book>Erstgespräch buchen</a></div>
       </div>
     </div>
   </section>
@@ -579,7 +596,7 @@
           <li><span class="yr">2022</span><span>Mentaltrainerin Professional <span class="org">Powerbrain Institut</span></span></li>
           <li><span class="yr">2010</span><span>Gesundheitspraktikerin <span class="org">BfG</span></span></li>
         </ol>
-        <div><a class="btn btn--ink" href="#kontakt">Lass uns kennenlernen</a></div>
+        <div><a class="btn btn--ink" href="#kontakt" data-book>Lass uns kennenlernen</a></div>
       </div>
     </div>
   </section>
@@ -608,7 +625,7 @@
         <h2 class="display h-l" id="ablauf-title">So läuft ein Coaching mit mir ab</h2>
       </div>
       <ol class="steps">
-        <li><h3>Erstgespräch</h3><p>Kurz, kostenlos und unverbindlich. Wir klären alles, was für den Start wichtig ist.</p></li>
+        <li><h3>Erstgespräch</h3><p>20 Minuten, kostenlos und unverbindlich, am Telefon oder per Video. Den Termin buchst du direkt online.</p></li>
         <li><h3>Erste Sitzung</h3><p>Rund 90 Minuten, in Kenzingen oder online. Wir legen dein Ziel fest, und es darf sich unterwegs verändern.</p></li>
         <li><h3>Der Prozess</h3><p>Neurocoaching als Basis, ergänzt durch Methoden, die zu dir passen.</p></li>
         <li><h3>Für deinen Alltag</h3><p>Tipps und ein Handout zur Selbsthilfe für die Zeit zwischen den Sitzungen.</p></li>
@@ -703,7 +720,13 @@
       <div style="display:flex; flex-direction:column; gap:1.3rem; min-width:0">
         <p class="eyebrow">Bereit für deinen nächsten Schritt?</p>
         <h2 class="display h-l" id="kontakt-title">Der erste Schritt ist ein Gespräch.</h2>
-        <p>Schreib mir in ein paar Sätzen, was dich gerade beschäftigt. Ich melde mich persönlich und wir finden einen Termin für dein kostenloses Erstgespräch.</p>
+        <p>Such dir einfach einen freien Termin für dein kostenloses Erstgespräch aus. Du bekommst sofort eine Bestätigung per E-Mail.</p>
+        <ul class="talk-facts">
+          <li><strong>20 Minuten</strong>, am Telefon oder per Video</li>
+          <li><strong>Wir schauen auf dein Anliegen</strong> und klären, ob und wie ich dich begleiten kann</li>
+          <li><strong>Kostenlos und ohne Verkaufsdruck.</strong> Du entscheidest danach in Ruhe</li>
+        </ul>
+        <div><a class="btn btn--ink btn--big" href="#contact-card" data-book>Termin online buchen</a></div>
         <div class="contact-lines">
           <span>Hauptstraße 12 · 79341 Kenzingen</span>
           <a href="tel:+4976449294280" style="color:inherit">07644 9294280</a>
@@ -711,7 +734,7 @@
         </div>
       </div>
       <div class="contact-card" id="contact-card">
-        <h3 class="mail-title">Schreib mir eine E-Mail</h3>
+        <h3 class="mail-title">Lieber schreiben?</h3>
         <p class="fine">Wähle dein Thema. Dein E-Mail-Programm öffnet sich dann mit einer vorbereiteten Nachricht, die du nur noch ergänzen musst.</p>
         <div class="field">
           <label for="c-topic">Worum geht es?</label>
@@ -742,6 +765,11 @@
 
 </main>
 
+<div class="book-bar" id="book-bar" hidden>
+  <span class="book-bar-text">Kostenloses Erstgespräch · 20 Min.</span>
+  <a class="btn btn--sun" href="#kontakt" data-book>Termin buchen</a>
+</div>
+
 <footer class="site-footer">
   <div class="inner">
     <div class="footer-grid">
@@ -767,6 +795,30 @@
 
 <script>
 (function(){
+  // Online-Buchung: Link aus Brevo Meetings hier eintragen. Leer = Buttons führen zum Kontaktbereich.
+  var BOOKING_URL = '';
+  if (BOOKING_URL) {
+    document.querySelectorAll('[data-book]').forEach(function(a){
+      a.href = BOOKING_URL; a.target = '_blank'; a.rel = 'noopener';
+    });
+  }
+
+  // Buchungsleiste am Handy: sichtbar nach dem Hero, ausgeblendet im Kontaktbereich
+  var bar = document.getElementById('book-bar');
+  var hero = document.querySelector('.hero');
+  var kontakt = document.getElementById('kontakt');
+  var pastHero = false, atContact = false;
+  if (!('IntersectionObserver' in window)) pastHero = true;
+  function syncBar(){ bar.hidden = !(pastHero && !atContact); }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(e){ pastHero = !e[0].isIntersecting; syncBar(); }).observe(hero);
+  }
+  // ab dem Kontaktbereich (inkl. Fußzeile) nicht mehr nötig
+  function checkContact(){ atContact = kontakt.getBoundingClientRect().top < window.innerHeight; syncBar(); }
+  window.addEventListener('scroll', checkContact, {passive:true});
+  window.addEventListener('resize', checkContact);
+  checkContact();
+
   // Mobiles Menü
   var toggle = document.querySelector('.nav-toggle');
   var links = document.getElementById('nav-links');
