@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Selbsttest · Derya Rein</title>
+<meta name="description" content="Welches Thema ist gerade deins? 7 Fragen, 2 Minuten: Finde heraus, ob es bei dir um Stärke, Loslassen oder neue Wege geht – mit einem ersten Schritt für heute.">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+  /* Gleiche Tokens wie die Startseite. Eine Frage pro Bildschirm, große Antwortflächen. */
+  :root{
+    --night:#0E1714;
+    --night-2:#16231E;
+    --night-line:rgba(236,239,232,.14);
+    --sage:#ECEFE8;
+    --ink:#14201B;
+    --ink-soft:#44524B;
+    --paper:#F7F8F4;
+    --on-night:#ECEFE8;
+    --on-night-soft:#AEBBB3;
+    --sun:#E9A23B;
+    --sun-deep:#B8740F;
+    --font-display:'Archivo', 'Arial Narrow', system-ui, sans-serif;
+    --font-body:'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-voice:'Newsreader', Georgia, 'Times New Roman', serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--night); color:var(--on-night); font-family:var(--font-body); font-size:1.0625rem; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  :focus-visible{outline:3px solid var(--sun); outline-offset:3px; border-radius:4px;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important; animation:none !important;} }
+  .inner{max-width:820px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
+
+  .site-header{border-bottom:1px solid var(--night-line); padding-top:env(safe-area-inset-top, 0px);}
+  .nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; min-height:72px; max-width:1200px;}
+  .wordmark{font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 80; font-size:1.45rem; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; display:flex; align-items:baseline; gap:.55rem; white-space:nowrap;}
+  .wordmark small{font-family:var(--font-voice); font-style:italic; font-weight:400; text-transform:none; letter-spacing:0; font-size:1rem; color:var(--on-night-soft);}
+  @media (max-width: 560px){ .wordmark small{display:none;} }
+  .back{font-family:var(--font-display); font-weight:700; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; color:var(--on-night-soft); min-height:44px; display:inline-flex; align-items:center;}
+  .back:hover{color:var(--on-night);}
+
+  main{padding-block:clamp(2.5rem, 7vw, 5rem) clamp(3rem, 8vw, 6rem);}
+  .eyebrow{font-family:var(--font-display); font-weight:700; font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--sun); margin:0 0 1rem;}
+  h1,h2,h3{font-family:var(--font-display); text-wrap:balance; margin:0;}
+  .display{font-weight:850; font-variation-settings:'wdth' 72; text-transform:uppercase; line-height:.95;}
+  .h-l{font-size:clamp(2.4rem, 7vw, 4.4rem);}
+  .h-m{font-size:clamp(1.7rem, 4.5vw, 2.6rem);}
+  .voice{font-family:var(--font-voice); font-style:italic; font-weight:400; text-transform:none;}
+  .lead{font-size:clamp(1.1rem, 1.6vw, 1.25rem); color:var(--on-night-soft); margin:0; max-width:60ch;}
+  .stack{display:flex; flex-direction:column; gap:1.4rem;}
+
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:.6rem; min-height:54px; padding:0 1.7rem; font-family:var(--font-display); font-weight:800; font-size:.95rem; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; border-radius:2px; border:2px solid transparent; cursor:pointer; transition:background .2s ease, transform .2s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn--sun{background:var(--sun); color:var(--night);}
+  .btn--sun:hover{background:#F3B658;}
+  .btn--ghost{border-color:currentColor; color:var(--on-night); background:transparent;}
+  .btn--ghost:hover{background:var(--on-night); color:var(--night);}
+  .btn-row{display:flex; flex-wrap:wrap; gap:.9rem; align-items:center;}
+  .facts{display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin:0; padding:0; list-style:none; color:var(--on-night-soft); font-size:.95rem;}
+  .facts li::before{content:"✓"; color:var(--sun); margin-right:.45rem; font-weight:700;}
+  .small{font-size:.88rem; color:var(--on-night-soft); margin:0;}
+
+  /* Fortschritt */
+  .progress{display:flex; align-items:center; gap:1rem; margin-bottom:2rem;}
+  .progress-track{flex:1; height:6px; background:var(--night-2); border-radius:999px; overflow:hidden;}
+  .progress-fill{height:100%; width:0; background:var(--sun); transition:width .3s ease;}
+  .progress-label{font-family:var(--font-display); font-weight:800; font-size:.85rem; letter-spacing:.1em; color:var(--on-night-soft); font-variant-numeric:tabular-nums; white-space:nowrap;}
+
+  /* Antworten */
+  .question{font-family:var(--font-display); font-weight:850; font-variation-settings:'wdth' 80; font-size:clamp(1.6rem, 4.5vw, 2.4rem); line-height:1.1; margin:0 0 1.8rem;}
+  .answers{display:flex; flex-direction:column; gap:.8rem; margin:0; padding:0; border:0;}
+  .answer{
+    display:block; width:100%; text-align:left; cursor:pointer;
+    font:inherit; font-size:1.1rem; line-height:1.45; color:var(--on-night);
+    background:var(--night-2); border:1px solid var(--night-line); border-radius:2px;
+    padding:1.1rem 1.3rem; min-height:60px; transition:border-color .15s ease, background .15s ease;
+  }
+  .answer:hover{border-color:var(--sun);}
+  .answer[aria-pressed="true"]{border-color:var(--sun); background:#2A2615;}
+  .q-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem; gap:1rem;}
+  .link-btn{background:none; border:0; color:var(--on-night-soft); font:inherit; font-size:.95rem; cursor:pointer; min-height:44px; padding:0; display:inline-flex; align-items:center; text-decoration:underline; text-underline-offset:4px;}
+  .link-btn:hover{color:var(--on-night);}
+  .link-btn[hidden]{display:none;}
+
+  /* Ergebnis */
+  .result-card{background:var(--sun); color:var(--night); padding:clamp(1.6rem, 4vw, 2.4rem); display:flex; flex-direction:column; gap:1rem;}
+  .result-card .eyebrow{color:var(--night);}
+  .result-card .quote{font-family:var(--font-voice); font-style:italic; font-size:1.4rem; line-height:1.35; margin:0;}
+  .result-card p{margin:0; color:#2E220B; max-width:62ch;}
+  .second{font-size:.95rem;}
+  .step{background:var(--night-2); border:1px solid var(--night-line); padding:1.6rem; display:flex; flex-direction:column; gap:.6rem;}
+  .step h3{font-weight:850; font-variation-settings:'wdth' 80; text-transform:uppercase; font-size:1.3rem;}
+  .step p{margin:0; color:var(--on-night-soft);}
+  .next{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.2rem;}
+  @media (max-width: 720px){ .next{grid-template-columns:1fr;} }
+  .next > div{background:var(--night-2); border:1px solid var(--night-line); padding:1.6rem; display:flex; flex-direction:column; gap:.9rem; min-width:0;}
+  .next h3{font-weight:850; font-variation-settings:'wdth' 80; text-transform:uppercase; font-size:1.3rem;}
+  .next p{margin:0; color:var(--on-night-soft);}
+  .next .btn{margin-top:auto; align-self:flex-start;}
+  .field{display:flex; flex-direction:column; gap:.4rem;}
+  .field label{font-weight:700; font-size:.88rem;}
+  .field input{font:inherit; color:var(--ink); background:#FFFFFF; border:1px solid #9AA79F; border-radius:2px; padding:.8rem .9rem; min-height:52px; width:100%;}
+  .hp{position:absolute; left:-9999px; width:1px; height:1px; opacity:0;}
+  .form-status{margin:0; font-size:.92rem;}
+  .form-status:empty{display:none;}
+  .form-status.is-shown{padding:.7rem .9rem; border:1px dashed currentColor;}
+  .consent{margin:0; font-size:.82rem; line-height:1.5; color:var(--on-night-soft);}
+
+  [hidden]{display:none !important;}
+
+  .site-footer{border-top:1px solid var(--night-line); color:var(--on-night-soft); padding-block:2.2rem calc(2rem + env(safe-area-inset-bottom, 0px));}
+  .site-footer .inner{max-width:1200px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem; align-items:center;}
+  .site-footer ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem 1.6rem;}
+  .site-footer a{color:var(--on-night-soft); text-decoration:none; min-height:44px; display:inline-flex; align-items:center;}
+  .site-footer a:hover{color:var(--on-night);}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner nav">
+    <a class="wordmark" href="index.html">Derya Rein <small>Stärke dich selbst.</small></a>
+    <a class="back" href="index.html">← Zur Startseite</a>
+  </div>
+</header>
+
+<main>
+  <div class="inner">
+
+    <!-- Start -->
+    <section id="intro" class="stack" aria-labelledby="intro-title">
+      <p class="eyebrow">Selbsttest</p>
+      <h1 class="display h-l" id="intro-title">Welches Thema ist <span class="voice" style="color:var(--sun)">gerade deins?</span></h1>
+      <p class="lead">Manchmal spürt man nur, dass etwas nicht mehr stimmt. Diese sieben Fragen helfen dir, genauer hinzuschauen: Geht es bei dir gerade um Stärke, ums Loslassen oder um neue Wege? Am Ende bekommst du einen ersten Schritt, den du heute schon gehen kannst.</p>
+      <ul class="facts"><li>7 Fragen</li><li>2 Minuten</li><li>Ergebnis sofort</li><li>Ohne Anmeldung</li></ul>
+      <div class="btn-row"><button class="btn btn--sun" type="button" id="start">Test starten</button></div>
+      <p class="small">Wähle bei jeder Frage die Antwort, die sich am ehesten richtig anfühlt. Es gibt kein Richtig oder Falsch. Der Test ist eine Orientierung, keine Diagnose. Deine Antworten bleiben in deinem Browser und werden nicht gespeichert.</p>
+    </section>
+
+    <!-- Fragen -->
+    <section id="quiz" hidden aria-live="polite">
+      <div class="progress">
+        <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+        <span class="progress-label" id="progress-label">Frage 1 von 7</span>
+      </div>
+      <h2 class="question" id="question" tabindex="-1"></h2>
+      <fieldset class="answers" id="answers" aria-labelledby="question"></fieldset>
+      <div class="q-nav">
+        <button class="link-btn" type="button" id="prev">← Zurück</button>
+        <span></span>
+      </div>
+    </section>
+
+    <!-- Ergebnis -->
+    <section id="result" class="stack" hidden aria-labelledby="result-title">
+      <div class="result-card">
+        <p class="eyebrow">Dein Thema gerade</p>
+        <h2 class="display h-l" id="result-title" tabindex="-1"></h2>
+        <p class="quote" id="result-quote"></p>
+        <p id="result-text"></p>
+        <p class="second" id="result-second" hidden></p>
+      </div>
+
+      <div class="step">
+        <h3>Ein erster Schritt für heute</h3>
+        <p id="result-step"></p>
+      </div>
+
+      <div class="next">
+        <div>
+          <h3>Lass uns darüber sprechen</h3>
+          <p>Im kostenlosen Erstgespräch schauen wir gemeinsam auf dein Thema. 20 Minuten, am Telefon oder per Video, ohne Verkaufsdruck.</p>
+          <a class="btn btn--sun" href="index.html#kontakt" data-book>Erstgespräch buchen</a>
+        </div>
+        <div>
+          <h3>Ergebnis per E-Mail</h3>
+          <p>Ich schicke dir dein Ergebnis, die Meditation „Zur Ruhe kommen“ und ein paar Impulse zu deinem Thema.</p>
+          <form id="result-form" method="POST" action="" novalidate style="display:flex; flex-direction:column; gap:.8rem">
+            <div class="field">
+              <label for="r-email">E-Mail-Adresse</label>
+              <input id="r-email" name="EMAIL" type="email" autocomplete="email" required placeholder="du@beispiel.de">
+            </div>
+            <input type="hidden" name="THEMA" id="r-thema" value="">
+            <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+            <input type="hidden" name="locale" value="de">
+            <button class="btn btn--ghost" type="submit">Ergebnis zusenden</button>
+            <p class="consent">Mit Klick auf „Ergebnis zusenden“ willige ich ein, dass Derya Rein mir mein Ergebnis, die Meditation und gelegentlich Impulse zu Coaching und mentaler Stärke per E-Mail schickt. Abmeldung jederzeit. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+            <p class="form-status" id="r-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="link-btn" type="button" id="restart">Test noch einmal machen</button>
+        <a class="link-btn" href="index.html#themen" style="text-decoration:underline">Alle Themen ansehen</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="inner">
+    <span>© 2026 Derya Rein · Stärke dich selbst.</span>
+    <nav aria-label="Fußzeile">
+      <ul>
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/config.js"></script>
+<script>
+(function(){
+  var CONFIG = window.DR_CONFIG || {};
+
+  // S = Stärke gewinnen, G = Grenzen sprengen, N = Neue Wege
+  var QUESTIONS = [
+    { q: 'Wenn ich an die letzten Wochen denke, fühle ich mich vor allem …', a: [
+      ['S', 'erschöpft, weil ich es allen recht machen will.'],
+      ['G', 'festgefahren, als würde mich etwas zurückhalten.'],
+      ['N', 'unruhig, weil ich spüre, dass da mehr sein müsste.'] ] },
+    { q: 'Welcher Gedanke kommt dir am bekanntesten vor?', a: [
+      ['S', '„Ich bin nicht gut genug.“'],
+      ['G', '„Das war schon immer so, das ändert sich nicht.“'],
+      ['N', '„Soll das jetzt alles gewesen sein?“'] ] },
+    { q: 'Jemand bittet dich um einen Gefallen, obwohl du eigentlich keine Zeit hast. Was passiert?', a: [
+      ['S', 'Ich sage trotzdem Ja und ärgere mich später über mich.'],
+      ['G', 'Ich fühle mich schuldig, egal wie ich mich entscheide.'],
+      ['N', 'Ich frage mich, wofür ich meine Zeit eigentlich einsetzen will.'] ] },
+    { q: 'Was wünschst du dir im Moment am meisten?', a: [
+      ['S', 'Mich selbst so anzunehmen, wie ich bin.'],
+      ['G', 'Mich endlich frei zu fühlen von dem, was mich belastet.'],
+      ['N', 'Eine klare Richtung, wohin es für mich gehen soll.'] ] },
+    { q: 'Was hält dich gerade am meisten zurück?', a: [
+      ['S', 'Die Sorge, was andere über mich denken.'],
+      ['G', 'Alte Erfahrungen, die mich immer wieder einholen.'],
+      ['N', 'Dass ich nicht weiß, welcher Schritt der richtige ist.'] ] },
+    { q: 'Stell dir vor, in einem Jahr hat sich etwas Wichtiges verändert. Woran merkst du es zuerst?', a: [
+      ['S', 'Ich fühle mich wohl in meiner Haut und kann mich gut abgrenzen.'],
+      ['G', 'Ich habe etwas Altes losgelassen und fühle mich leichter.'],
+      ['N', 'Ich bin mutig einen ersten Schritt in eine neue Richtung gegangen.'] ] },
+    { q: 'Welcher Satz würde dir gerade am meisten guttun?', a: [
+      ['S', '„Du bist genug, so wie du bist.“'],
+      ['G', '„Du darfst loslassen.“'],
+      ['N', '„Du darfst deinen eigenen Weg gehen.“'] ] }
+  ];
+
+  var RESULTS = {
+    S: { title: 'Stärke gewinnen', quote: '„Ich zweifle ständig an mir und stelle mich hinten an.“',
+      text: 'Bei dir geht es gerade vor allem um dich selbst: um Selbstvertrauen, Anerkennung und die Erlaubnis, dich nicht immer hinten anzustellen. Im Coaching stärken wir deinen Blick auf das, was du kannst, damit du dich annehmen und gut abgrenzen kannst.',
+      step: 'Schreib heute Abend drei Dinge auf, die dir heute gelungen sind, auch ganz kleine. Wiederhol das eine Woche lang. Dein Gehirn lernt so, den Blick auf deine Stärken zu richten statt auf deine Zweifel.' },
+    G: { title: 'Grenzen sprengen', quote: '„Ich trage alte Lasten mit mir und komme nicht los.“',
+      text: 'Bei dir geht es gerade vor allem ums Loslassen: um alte Muster, Schuldgefühle oder Erfahrungen, die dich immer wieder einholen. Im Coaching machen wir sichtbar, was dich festhält, damit du Altes loslassen und frei entscheiden kannst.',
+      step: 'Nimm dir fünf ruhige Minuten und schreib einen Satz auf, den du schon lange mit dir herumträgst, zum Beispiel „Ich muss immer stark sein“. Lies ihn laut und frag dich: Ist das heute noch wahr? Was wäre ein Satz, der besser zu dir passt?' },
+    N: { title: 'Neue Wege', quote: '„Ich spüre, da ist mehr, aber ich weiß nicht wohin.“',
+      text: 'Bei dir geht es gerade vor allem um Richtung: Du spürst, dass mehr in dir steckt, und wünschst dir Klarheit und Mut für deinen weiteren Weg. Im Coaching entwickeln wir eine Vision, damit du Entscheidungen aus freiem Willen triffst und den ersten Schritt gehst.',
+      step: 'Stell dir vor, es ist ein Jahr später und du bist mutig losgegangen. Schreib in drei Sätzen auf, wie ein ganz normaler Tag dann aussieht. Was davon könntest du schon diese Woche ein kleines Stück ausprobieren?' }
+  };
+
+  var intro = document.getElementById('intro');
+  var quiz = document.getElementById('quiz');
+  var result = document.getElementById('result');
+  var qEl = document.getElementById('question');
+  var aEl = document.getElementById('answers');
+  var prev = document.getElementById('prev');
+  var fill = document.getElementById('progress-fill');
+  var label = document.getElementById('progress-label');
+  var answers = [];
+  var current = 0;
+  var orders = [];
+
+  function shuffle(n){
+    var idx = []; for (var i = 0; i < n; i++) idx.push(i);
+    for (var j = n - 1; j > 0; j--) { var k = Math.floor(Math.random() * (j + 1)); var t = idx[j]; idx[j] = idx[k]; idx[k] = t; }
+    return idx;
+  }
+
+  function show(section){
+    [intro, quiz, result].forEach(function(s){ s.hidden = (s !== section); });
+    window.scrollTo(0, 0);
+  }
+
+  function renderQuestion(){
+    var item = QUESTIONS[current];
+    qEl.textContent = item.q;
+    label.textContent = 'Frage ' + (current + 1) + ' von ' + QUESTIONS.length;
+    fill.style.width = Math.round(current / QUESTIONS.length * 100) + '%';
+    prev.hidden = current === 0;
+    aEl.textContent = '';
+    orders[current].forEach(function(i){
+      var opt = item.a[i];
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'answer';
+      b.textContent = opt[1];
+      b.setAttribute('aria-pressed', answers[current] === opt[0] ? 'true' : 'false');
+      b.addEventListener('click', function(){ choose(opt[0]); });
+      aEl.appendChild(b);
+    });
+    qEl.focus({ preventScroll: true });
+  }
+
+  function choose(key){
+    answers[current] = key;
+    if (current < QUESTIONS.length - 1) { current++; renderQuestion(); }
+    else { fill.style.width = '100%'; showResult(); }
+  }
+
+  function showResult(){
+    var score = { S: 0, G: 0, N: 0 };
+    answers.forEach(function(k){ score[k]++; });
+    // bei Gleichstand zählt die letzte Frage („Welcher Satz würde dir guttun?“)
+    var ranked = ['S', 'G', 'N'].sort(function(a, b){
+      return (score[b] - score[a]) || ((b === answers[6]) - (a === answers[6]));
+    });
+    var top = RESULTS[ranked[0]];
+    document.getElementById('result-title').textContent = top.title;
+    document.getElementById('result-quote').textContent = top.quote;
+    document.getElementById('result-text').textContent = top.text;
+    document.getElementById('result-step').textContent = top.step;
+    var second = document.getElementById('result-second');
+    if (score[ranked[1]] >= 2 && score[ranked[1]] >= score[ranked[0]] - 1) {
+      second.hidden = false;
+      second.textContent = 'Auch das Thema „' + RESULTS[ranked[1]].title + '“ klingt bei dir deutlich an. Oft hängen beide eng zusammen.';
+    } else { second.hidden = true; }
+    document.getElementById('r-thema').value = top.title;
+    show(result);
+    document.getElementById('result-title').focus({ preventScroll: true });
+  }
+
+  function start(){
+    answers = []; current = 0;
+    orders = QUESTIONS.map(function(q){ return shuffle(q.a.length); });
+    show(quiz); renderQuestion();
+  }
+
+  document.getElementById('start').addEventListener('click', start);
+  document.getElementById('restart').addEventListener('click', start);
+  prev.addEventListener('click', function(){ if (current > 0) { current--; renderQuestion(); } });
+
+  // Buchungslink aus der Konfiguration
+  if (CONFIG.bookingUrl) {
+    document.querySelectorAll('[data-book]').forEach(function(a){ a.href = CONFIG.bookingUrl; a.target = '_blank'; a.rel = 'noopener'; });
+  }
+
+  // Ergebnis per E-Mail: Anmeldung direkt an Brevo (Double-Opt-in läuft in Brevo)
+  var form = document.getElementById('result-form');
+  var status = document.getElementById('r-status');
+  var email = document.getElementById('r-email');
+  var btn = form.querySelector('button[type="submit"]');
+  function say(t){ status.classList.add('is-shown'); status.textContent = t; }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!email.value || !email.checkValidity()) { say('Bitte gib eine gültige E-Mail-Adresse ein, z. B. name@beispiel.de.'); email.focus(); return; }
+    var action = CONFIG.brevoAction || '';
+    if (!action) { say('Vorschau: Die Anmeldung ist noch nicht mit Brevo verbunden. Es wurde nichts gesendet.'); return; }
+    btn.disabled = true; say('Einen Moment …');
+    fetch(action + (action.indexOf('?') < 0 ? '?' : '&') + 'isAjax=1', { method: 'POST', body: new FormData(form) })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if (data && data.success) { email.value = ''; say('Fast geschafft: Bitte bestätige deine Anmeldung in der E-Mail, die du gleich bekommst. Danach schicke ich dir dein Ergebnis und die Meditation.'); }
+        else { say('Das hat leider nicht geklappt. Bitte prüfe deine E-Mail-Adresse und versuch es noch einmal.'); }
+      })
+      .catch(function(){ form.action = action; HTMLFormElement.prototype.submit.call(form); })
+      .then(function(){ btn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>

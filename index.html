@@ -245,6 +245,10 @@
   @media (max-width: 820px){ .statement .inner{grid-template-columns:1fr;} }
 
   /* Drei Säulen */
+  .test-teaser{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.8rem 2rem; margin:0 0 1.6rem; padding:1.2rem 1.5rem; background:var(--paper); border:1px solid var(--sage-2); color:var(--ink); text-decoration:none;}
+  .test-teaser:hover{border-color:var(--ink-soft);}
+  .test-teaser > span:first-child{flex:1 1 420px; min-width:0;}
+  .test-teaser-cta{font-family:var(--font-display); font-weight:800; letter-spacing:.1em; text-transform:uppercase; font-size:.85rem; color:var(--sun-deep); white-space:nowrap;}
   .pillars{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1px; background:var(--sage-2); border:1px solid var(--sage-2);}
   @media (max-width: 900px){ .pillars{grid-template-columns:1fr;} }
   .pillar{background:var(--sage); padding:2.2rem 1.9rem; display:flex; flex-direction:column; gap:1rem; min-width:0;}
@@ -429,7 +433,7 @@
         <p class="lead">Du spürst, dass sich etwas verändern muss, weißt aber noch nicht genau was oder wie? Ich begleite dich behutsam und in deinem Tempo dabei, Blockaden zu lösen und deinen nächsten Schritt mit Klarheit zu gehen. Denn Veränderung darf auch leicht sein.</p>
         <div class="btn-row">
           <a class="btn btn--sun" href="#kontakt" data-book>Erstgespräch buchen</a>
-          <a class="btn btn--ghost" href="#themen">Finde dein Thema</a>
+          <a class="btn btn--ghost" href="selbsttest.html">Finde dein Thema</a>
         </div>
         <p class="hero-note"><span>20 Minuten</span><span>Kostenlos &amp; unverbindlich</span><span>Am Telefon oder per Video</span></p>
       </div>
@@ -556,6 +560,10 @@
         <h2 class="display h-l" id="themen-title">Klingt einer dieser Sätze nach dir?</h2>
         <p class="lead">Du musst nicht wissen, was genau dahinter steckt. Wähle einfach den Satz, der dir am nächsten ist. Den Rest finden wir gemeinsam heraus.</p>
       </div>
+      <a class="test-teaser" href="selbsttest.html">
+        <span><strong>Unsicher, welches Thema gerade deins ist?</strong> Mach den Selbsttest: 7 Fragen, 2 Minuten, mit einem ersten Schritt für heute.</span>
+        <span class="test-teaser-cta">Zum Selbsttest →</span>
+      </a>
       <div class="pillars">
         <article class="pillar">
           <h3 class="pillar-name">Stärke gewinnen</h3>
@@ -695,8 +703,7 @@
           </div>
         </div>
         <div class="wave" id="wave" aria-hidden="true"></div>
-        <!-- Brevo: Formular-Adresse aus Brevo (Formulare > Anmeldeformular > Teilen > HTML-Code, Attribut action) hier eintragen -->
-        <form class="inline-form" id="gift-form" method="POST" action="" data-brevo-action="" novalidate>
+        <form class="inline-form" id="gift-form" method="POST" action="" novalidate>
           <div class="field">
             <label for="gift-email">E-Mail-Adresse</label>
             <input id="gift-email" name="EMAIL" type="email" autocomplete="email" required placeholder="du@beispiel.de">
@@ -827,10 +834,12 @@
   </div>
 </footer>
 
+<script src="assets/config.js"></script>
 <script>
 (function(){
-  // Online-Buchung: Link aus Brevo Meetings hier eintragen. Leer = Buttons führen zum Kontaktbereich.
-  var BOOKING_URL = '';
+  // Online-Buchung: Link steht in assets/config.js. Leer = Buttons führen zum Kontaktbereich.
+  var CONFIG = window.DR_CONFIG || {};
+  var BOOKING_URL = CONFIG.bookingUrl || '';
   if (BOOKING_URL) {
     document.querySelectorAll('[data-book]').forEach(function(a){
       a.href = BOOKING_URL; a.target = '_blank'; a.rel = 'noopener';
@@ -916,7 +925,7 @@
       giftEmail.focus();
       return;
     }
-    var action = giftForm.dataset.brevoAction;
+    var action = CONFIG.brevoAction || '';
     if (!action) { say('Vorschau: Die Anmeldung ist noch nicht mit Brevo verbunden. Es wurde nichts gesendet.'); return; }
     giftBtn.disabled = true;
     say('Einen Moment …');
